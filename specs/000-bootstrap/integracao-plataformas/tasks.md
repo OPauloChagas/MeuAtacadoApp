@@ -34,6 +34,19 @@ não inclui executar migrations remotas.
 - Vercel CLI `list meuatacadoapp --scope pauls5 --json`: exit 0, nenhum deployment
   existente antes do push. Não executar migrations no banco remoto nesta etapa.
 
+## Execução da publicação
+
+- Commit inicial criado: `f0fa78c` — `feat: bootstrap Atacado app and configure Vercel deployment`.
+- `git push -u origin main` falhou por ausência de autenticação GitHub no Git
+  (`could not read Username`); nenhum token GitHub disponível no ambiente e CLI
+  GitHub ausente. Solicitada conexão GitHub ou autenticação Git no VS Code.
+  O envio não foi considerado concluído.
+- O dry-run Vercel confirmou Next.js e exclusão de `.env.local`, mas mostrou
+  artefatos ignorados pelo Git ainda presentes no upload do CLI. Adicionado
+  `.vercelignore` para excluir caches, resultados de testes e estado local do
+  Supabase. A publicação será feita diretamente pelo CLI enquanto o push aguarda
+  autenticação; a origem do deploy será registrada sem alegar publicação via Git.
+
 ## Evidências
 
 | Verificação | Comando/método | Resultado | Limite |

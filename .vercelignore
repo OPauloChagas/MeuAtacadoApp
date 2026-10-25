@@ -1,0 +1,18 @@
+# Excluir ambiente e artefatos locais também em uploads pelo CLI.
+.env*
+.git/
+.vercel/
+node_modules/
+.next/
+out/
+next-env.d.ts
+*.tsbuildinfo
+coverage/
+playwright-report/
+test-results/
+.vitest/
+*.log
+.DS_Store
+supabase/.temp/
+supabase/.branches/
+supabase/snippets/
