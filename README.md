@@ -47,6 +47,11 @@ As ferramentas podem variar no carregamento automático dos arquivos; o prompt m
 
 ## Executar a base local
 
+Base F0 publicada: [meuatacadoapp.vercel.app](https://meuatacadoapp.vercel.app).
+A página inicial já está disponível; integração Supabase e identidade continuam
+pendentes. Essa publicação foi feita pelo CLI Vercel; sincronização GitHub e CI
+dependem do primeiro push autenticado.
+
 Use Node.js 24.22.1 LTS e npm 11.11.1 (Node fixado em `.nvmrc` e `.node-version`).
 
 ```sh

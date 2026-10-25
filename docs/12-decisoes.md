@@ -75,6 +75,12 @@ substitui somente a proibição anterior de publicar a aplicação nesta execuç
 não autoriza migrations remotas ou início da F1. Verificar o deployment real,
 HTTP e conteúdo, sem tratar publicação da página como sistema implementado.
 
+Resultado: base F0 publicada pelo CLI Vercel, deployment
+`dpl_FZ5VrASpXoXf2xtG5LMaJyhDZuXg` READY, alias
+https://meuatacadoapp.vercel.app com HTTP 200 e conteúdo pt-BR confirmados.
+Push pendente de autenticação GitHub, sem confundir deploy CLI com publicação
+disparada por Git. Evidências detalhadas nas tarefas de integração.
+
 ## Referências técnicas oficiais
 
 Consultadas em 24/10/2026. Reconsultar ao implementar para APIs, versões e limites atuais. Estes links embasam mecanismos da plataforma; as regras comerciais deste pacote são propostas específicas do projeto.

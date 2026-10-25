@@ -1,7 +1,7 @@
 # Tarefas e evidências — Integração de plataformas
 
-Status: publicação da base F0 autorizada e em andamento; Supabase aguardando a
-conexão escolhida pelo responsável. Integração Supabase ainda não validada.
+Status: base F0 publicada e validada na Vercel pelo CLI; commits locais criados;
+push aguarda autenticação GitHub. Supabase aguarda conexão e não está integrado.
 
 - [x] Ler instruções e inspecionar baseline de F0 e documentação oficial.
 - [x] Verificar identidade e identificar projeto existente na Vercel.
@@ -10,8 +10,9 @@ conexão escolhida pelo responsável. Integração Supabase ainda não validada.
 - [ ] Configurar variáveis públicas nos ambientes confirmados.
 - [ ] Validar conexão real e registrar resultados finais.
 - [x] Revisar arquivos e verificar a base antes da publicação.
-- [ ] Criar commit e enviar a main ao GitHub.
-- [ ] Confirmar deployment Vercel Ready e validar o endereço publicado.
+- [x] Criar os commits da base e configuração de publicação.
+- [ ] Enviar a main ao GitHub após autenticar o Git.
+- [x] Confirmar deployment Vercel Ready e validar o endereço publicado.
 
 ## Autorização de publicação
 
@@ -46,6 +47,27 @@ não inclui executar migrations remotas.
   `.vercelignore` para excluir caches, resultados de testes e estado local do
   Supabase. A publicação será feita diretamente pelo CLI enquanto o push aguarda
   autenticação; a origem do deploy será registrada sem alegar publicação via Git.
+- Commit de exclusões do upload: `6223286` — `chore: exclude local artifacts from Vercel uploads`.
+- Dry-run final: Next.js detectado, nenhum arquivo de ambiente, cache ou estado
+  local entre os arquivos regulares do upload. Diretórios vazios sem conteúdo
+  ainda podem aparecer na listagem do CLI.
+- `vercel deploy --prod --yes --scope pauls5`: exit 0, publicação pelo CLI a partir
+  de `6223286`, deployment `dpl_FZ5VrASpXoXf2xtG5LMaJyhDZuXg`, estado READY.
+  URL imutável: https://meuatacadoapp-exfbpj134-pauls5.vercel.app.
+  Alias de produção: https://meuatacadoapp.vercel.app.
+- Build remoto: Node 24.x, Vercel build CLI 65.1.0, `npm ci` (182 pacotes
+  instalados/183 auditados, nenhuma vulnerabilidade informada), Next 16.4.3,
+  build concluído em 19 s. Aviso npm de cache-dir injetado pelo ambiente Vercel,
+  sem falha de instalação/build. Não modifica as versões fixadas do projeto.
+- `vercel inspect meuatacadoapp-exfbpj134-pauls5.vercel.app --scope pauls5 --json`:
+  exit 0, target production, READY, runtime nodejs24.x, aliases atribuídos.
+- Smoke HTTP real no alias público: exit 0; HTTP 200, lang pt-BR, título
+  `Atacado | Ambiente de desenvolvimento` e conteúdo inicial confirmados. A
+  primeira tentativa no sandbox falhou por DNS; repetida fora dele com sucesso.
+- O responsável escolheu autenticar Git pelo VS Code. Essa escolha não é
+  evidência de push; a última consulta remota ainda mostrou repositório vazio.
+  GitHub Actions não executou por não haver push confirmado. Nenhuma migration
+  remota, convite ou operação comercial foi executada.
 
 ## Evidências
 

@@ -2,8 +2,10 @@
 
 Este é um roteiro de implantação futura. Em 24/10/2026, o diretório foi vinculado
 ao projeto Vercel existente `pauls5/meuatacadoapp`, configurado para Next.js e
-Node 24.x. O responsável autorizou commit, push e primeira publicação da base F0;
-verificação do deployment em andamento. A conexão Supabase aguarda
+Node 24.x. A base F0 foi publicada via CLI e validada em
+https://meuatacadoapp.vercel.app, estado READY e smoke HTTP 200 aprovado.
+Os commits locais estão prontos; o push aguarda autenticação GitHub no Git.
+A conexão Supabase aguarda
 autenticação. Evidências em
 [integração de plataformas](../specs/000-bootstrap/integracao-plataformas/tasks.md).
 A infraestrutura local de F0 está em [ambiente local](13-ambiente-local.md).
@@ -20,6 +22,9 @@ A infraestrutura local de F0 está em [ambiente local](13-ambiente-local.md).
   `pauls5/meuatacadoapp`, ambiente de produção pela branch `main`. Migrations
   remotas continuam fora desta autorização. A publicação não implementa Auth
   nem as funcionalidades de negócio.
+- Deployment publicado pelo CLI: `dpl_FZ5VrASpXoXf2xtG5LMaJyhDZuXg`, a partir do
+  commit `6223286`, sem depender de push. O GitHub e o pipeline CI não devem ser
+  tratados como sincronizados até confirmar o envio da branch main.
 
 ## Ambientes
 
