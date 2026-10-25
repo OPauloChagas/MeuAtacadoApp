@@ -1,0 +1,3 @@
+-- F0 não cria usuários nem entidades comerciais.
+-- Fixtures fictícios de tenants/atores serão especificados e adicionados na F1.
+-- Sem INSERTs, credenciais ou dados de produção.

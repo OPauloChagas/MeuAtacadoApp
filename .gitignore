@@ -1,0 +1,24 @@
+# Dependências e builds
+node_modules/
+.next/
+out/
+*.tsbuildinfo
+next-env.d.ts
+
+# Ambiente local e credenciais
+.env*
+!.env.example
+.vercel/
+
+# Supabase local
+supabase/.temp/
+supabase/.branches/
+
+# Testes e ferramentas
+coverage/
+playwright-report/
+test-results/
+.vitest/
+*.log
+.DS_Store
+.vercel
