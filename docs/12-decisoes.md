@@ -220,6 +220,22 @@ Fontes oficiais consultadas em 27/10/2026:
 [privilégios](https://www.postgresql.org/docs/17/ddl-priv.html) e
 [locks PostgreSQL 17](https://www.postgresql.org/docs/17/explicit-locking.html).
 
+## ADR-015 — Publicação de desenvolvimento e disponibilidade de recuperação
+
+Status: adotada em 27/10/2026 para a publicação autorizada de F1/F2.A.
+O endereço principal existente da Vercel usa meuatacado-dev, sem criar plano
+pago ou banco de produção. Não aprova operação com dados reais. O pedido atual
+autoriza migrations incrementais nesse banco, sem fixtures, seed ou reset.
+
+O serviço recusou HTTP 400 para alterar template de e-mail no Free com provedor
+padrão. Preservar cobrança/provedor e configurar somente segurança/URLs Auth.
+AUTH_RECOVERY_ENABLED=false na Vercel impede envio e consumo nas Server Actions
+e informa indisponibilidade na página. Ausente/true mantém recuperação local;
+valor inválido desabilita. Login continua disponível. SMTP e chave Auth Admin
+para convites não foram inventados; envio permanece indisponível. Habilitar
+recuperação após SMTP/template compatível e teste real. Evidências na publicação
+da spec 002; não confundir disponibilidade configurada com autorização de negócio.
+
 ## Referências técnicas oficiais
 
 Consultadas em 24/10/2026. Reconsultar ao implementar para APIs, versões e limites atuais. Estes links embasam mecanismos da plataforma; as regras comerciais deste pacote são propostas específicas do projeto.

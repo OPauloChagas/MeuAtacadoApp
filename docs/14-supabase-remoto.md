@@ -1,7 +1,18 @@
 # 14 — Supabase de desenvolvimento remoto
 
-Configurado e verificado em 25/10/2026. Escopo: infraestrutura de F0, sem iniciar
+Registro inicial: configurado e verificado em 25/10/2026. Escopo: infraestrutura de F0, sem iniciar
 identidade, autorização de negócio ou tabelas comerciais de F1.
+
+Atualização em 27/10/2026: publicação F1/F2.A expressamente autorizada.
+Quatro migrations aplicadas sem seed/reset; 7 tabelas com FORCE RLS, 18 RPCs
+do executor e dois papéis restritos conferidos. Banco continua de desenvolvimento,
+sem usuários Auth/tenants provisionados. Vercel Production agora usa este projeto,
+APP_URL do endereço principal e AUTH_RECOVERY_ENABLED=false. Configuração Auth
+fecha signup público, usa URLs exatas e senha mínima 12. Template personalizado
+foi recusado pelo Free sem SMTP próprio; recuperação e convites permanecem
+indisponíveis. Evidências em
+[publicação](../specs/002-cadastros-precificacao/publicacao/tasks.md).
+As seções abaixo preservam a configuração/verificação histórica da F0.
 
 ## Projeto
 

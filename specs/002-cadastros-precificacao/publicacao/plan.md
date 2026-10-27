@@ -8,6 +8,9 @@
 5. Aplicar somente migrations pendentes no projeto confirmado, sem seed/reset;
    conferir histórico, RLS/grants/papéis/RPCs por consultas de metadados.
 6. Configurar Auth e variáveis da Vercel, sem SMTP/admin key indisponíveis.
+   Template bloqueado pelo provedor Free: remover somente essa personalização,
+   manter demais opções e desabilitar recuperação no servidor/UI por configuração.
+   Verificar regra de disponibilidade em unidade e regressão Auth real local.
 7. Push fast-forward em main, observar build Git e validar deployment/HTTPS.
 8. Registrar resultados reais em commit documental e confirmar push/publicação
    final. Não afirmar testes autenticados remotos se não houver atores criados.

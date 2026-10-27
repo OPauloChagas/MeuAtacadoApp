@@ -1,5 +1,5 @@
 import { afterEach, describe, expect, it, vi } from "vitest";
-import { identityConfigured, readIdentityConfig } from "./config";
+import { identityConfigured, passwordRecoveryConfigured, readIdentityConfig } from "./config";
 
 afterEach(() => vi.unstubAllEnvs());
 describe("origem canônica para autenticação", () => {
@@ -20,5 +20,19 @@ describe("origem canônica para autenticação", () => {
       expect(identityConfigured()).toBe(false);
       expect(() => readIdentityConfig()).toThrow();
     }
+  });
+  it("só habilita recuperação com origem válida e opção ausente ou true", () => {
+    configure("https://atacado.example.test");
+    for (const value of [undefined, "true"]) {
+      vi.stubEnv("AUTH_RECOVERY_ENABLED", value);
+      expect(passwordRecoveryConfigured()).toBe(true);
+    }
+    for (const value of ["false", "invalid", ""]) {
+      vi.stubEnv("AUTH_RECOVERY_ENABLED", value);
+      expect(passwordRecoveryConfigured()).toBe(false);
+    }
+    vi.stubEnv("AUTH_RECOVERY_ENABLED", "true");
+    vi.stubEnv("APP_URL", "");
+    expect(passwordRecoveryConfigured()).toBe(false);
   });
 });

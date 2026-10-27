@@ -2,7 +2,7 @@
 
 import { redirect } from "next/navigation";
 import { createAuthClient } from "@/lib/supabase/server";
-import { identityConfigured, readIdentityConfig } from "@/lib/supabase/config";
+import { identityConfigured, passwordRecoveryConfigured, readIdentityConfig } from "@/lib/supabase/config";
 import { clearContext, writeContext, listContexts, authenticatedClient } from "./session";
 import { dashboardPath, readEmail, readPassword, readRecoveryHash, type AuthDestination, type FormState } from "./contracts";
 
@@ -33,7 +33,7 @@ export async function login(_state: FormState, form: FormData): Promise<FormStat
 export async function recoverPassword(_state: FormState, form: FormData): Promise<FormState> {
   const email = readEmail(form.get("email"));
   if (!email) return { status: "error", message: "Informe um e-mail válido." };
-  if (!identityConfigured()) return unavailable;
+  if (!passwordRecoveryConfigured()) return unavailable;
   try {
     const client = await createAuthClient(true);
     await client.auth.resetPasswordForEmail(email, { redirectTo: `${readIdentityConfig().origin}/auth/confirm` });
@@ -43,7 +43,7 @@ export async function recoverPassword(_state: FormState, form: FormData): Promis
 
 export async function confirmRecovery(_state: FormState, form: FormData): Promise<FormState> {
   const token = readRecoveryHash(form.get("token_hash"));
-  if (!token || !identityConfigured()) {
+  if (!token || !passwordRecoveryConfigured()) {
     return { status: "error", message: "Este link é inválido ou expirou. Solicite uma nova recuperação." };
   }
   const client = await createAuthClient(true);

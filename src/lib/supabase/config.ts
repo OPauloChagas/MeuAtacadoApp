@@ -14,3 +14,7 @@ export function readIdentityConfig() {
 export function identityConfigured(): boolean {
   try { readIdentityConfig(); return true; } catch { return false; }
 }
+
+export function passwordRecoveryConfigured(): boolean {
+  return identityConfigured() && [undefined, "true"].includes(process.env.AUTH_RECOVERY_ENABLED);
+}

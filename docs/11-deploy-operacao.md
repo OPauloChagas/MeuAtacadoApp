@@ -10,7 +10,26 @@ verificado. Configuração em [Supabase remoto](14-supabase-remoto.md). Evidênc
 [integração de plataformas](../specs/000-bootstrap/integracao-plataformas/tasks.md).
 A infraestrutura local de F0 está em [ambiente local](13-ambiente-local.md).
 
-## Estado da integração
+## Publicação autorizada de F1/F2.A — 27/10/2026
+
+O responsável solicitou commit e publicação também no Supabase. Destinos
+existentes confirmados: Vercel pauls5/meuatacadoapp e Supabase meuatacado-dev
+(aonjpucxfkeafoqnyrry). O endereço principal passa a hospedar a versão de
+desenvolvimento com esse banco; ambiente isolado de produção real continua
+pendente. A autorização atual inclui as quatro migrations versionadas, sem
+seeds/fixtures/reset remoto. Evidências em
+[publicação da spec 002](../specs/002-cadastros-precificacao/publicacao/tasks.md).
+
+Production na Vercel recebe NEXT_PUBLIC_SUPABASE_URL,
+NEXT_PUBLIC_SUPABASE_PUBLISHABLE_KEY, APP_URL e AUTH_RECOVERY_ENABLED=false.
+Não recebe senha PostgreSQL nem chave administrativa. Convites sem SMTP seguem
+indisponíveis. O serviço Free recusou alteração de template sem SMTP próprio;
+recuperação fica desabilitada na interface e Server Actions, conforme ADR-015.
+Após SMTP/template e teste real, habilitar AUTH_RECOVERY_ENABLED=true.
+Primeiro tenant/admin será provisionado pelo procedimento restrito de docs/15;
+não se criaram conta, senha ou dados empresariais fictícios no remoto.
+
+## Estado histórico da integração F0
 
 - Configuração Vercel versionada em `vercel.json`: Next.js, instalação `npm ci`,
   build `npm run build`, desenvolvimento `npm run dev`.
