@@ -5,7 +5,7 @@ Nome de trabalho: Atacado. Marca final ainda não definida.
 
 ## O que é este pacote
 
-SDD significa aqui **Spec-Driven Development: desenvolvimento guiado por especificações**. O pacote também inclui o desenho da solução. A versão inicial continha somente documentos para usar com Codex e Claude no VS Code. A F0 acrescenta a base executável Next.js/TypeScript, migrations técnicas locais e verificações; as funcionalidades comerciais ainda não estão implementadas.
+SDD significa aqui **Spec-Driven Development: desenvolvimento guiado por especificações**. O pacote também inclui o desenho da solução. A versão inicial continha somente documentos para usar com Codex e Claude no VS Code. F0 acrescentou a base Next.js/TypeScript; F1 e F2.A entregam identidade, administração, convites locais e clientes/carteira. Produtos, preços, pedidos e financeiro continuam pendentes.
 
 A especificação é a referência do comportamento. Cada entrega segue: especificar → planejar → dividir em tarefas → implementar → validar → atualizar os documentos. Não gerar todo o sistema em uma única execução.
 
@@ -48,18 +48,18 @@ As ferramentas podem variar no carregamento automático dos arquivos; o prompt m
 | [15 — Fundação de identidade](docs/15-identidade-fundacao.md) | Banco/RLS/RPCs locais de F1.A, testes reais e limites |
 | [16 — Autenticação e contexto](docs/16-autenticacao-contexto.md) | Login, recuperação local, seleção e testes F1.B |
 | [17 — Administração e convites](docs/17-administracao-convites.md) | Empresa, vínculos, entrega/aceite e reconciliação local F1.C |
+| [18 — Clientes e carteira](docs/18-clientes-carteira.md) | Cadastro e carteira com projeção por contexto, F2.A |
 
 ## Executar a base local
 
-Base F0 publicada: [meuatacadoapp.vercel.app](https://meuatacadoapp.vercel.app).
-A página inicial já está disponível, e o primeiro push foi confirmado no GitHub.
-O Supabase `meuatacado-dev` está provisionado e configurado para desenvolvimento
-local e Vercel Development/Preview. A fundação de identidade de F1.A está no banco
-Docker local; ainda não foi aplicada ao remoto. A F1.B conecta a interface ao
-ambiente local, com login, recuperação e seleção de acesso.
-F1.C acrescenta edição da empresa, controle de vínculos e convites locais com
-repetição segura e tratamento de falhas de envio.
-Consulte a [configuração remota](docs/14-supabase-remoto.md).
+Versão de desenvolvimento publicada: [meuatacadoapp.vercel.app](https://meuatacadoapp.vercel.app).
+F1/F2.A estão na Vercel e as quatro migrations foram aplicadas no
+`meuatacado-dev`, sem seed ou usuários fictícios. O primeiro tenant/admin precisa
+de provisionamento restrito; não há senha padrão. Convites e recuperação no
+remoto aguardam SMTP/template compatível; a interface informa indisponibilidade.
+Recuperação e convites seguem testáveis no Docker/Mailpit local. Consulte a
+[configuração remota](docs/14-supabase-remoto.md) e as
+[evidências de publicação](specs/002-cadastros-precificacao/publicacao/tasks.md).
 
 Use Node.js 24.22.1 LTS e npm 11.11.1 (Node fixado em `.nvmrc` e `.node-version`).
 

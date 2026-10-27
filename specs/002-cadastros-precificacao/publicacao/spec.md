@@ -1,7 +1,8 @@
 # Publicação F1 + F2.A
 
-Status: execução autorizada em 27/10/2026 pelo pedido explícito de commit e
-publicação na Vercel e no Supabase. Este recorte não inicia F2.B.
+Status: publicada e verificada em 27/10/2026, com limites de SMTP/provisionamento
+registrados. Autorização explícita de commit/publicação na Vercel e no Supabase.
+Este recorte não inicia F2.B.
 
 Destinos confirmados por consulta remota: GitHub OPauloChagas/MeuAtacadoApp,
 branch main; Vercel pauls5/meuatacadoapp no endereço existente
