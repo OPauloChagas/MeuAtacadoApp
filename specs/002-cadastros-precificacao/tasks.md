@@ -1,6 +1,6 @@
 # 002 — Tarefas e evidências
 
-Status: F2.A concluída localmente em 27/10/2026. F2 completa ainda pendente.
+Status: F2.A publicada e F2.B/C validadas localmente em 27/10/2026. F2.D pendente.
 
 - [x] 002.1 Inspecionar instruções e definir o recorte/aceite de F2.A.
 - [x] 002.2 Evoluir customers/grants/RLS e contratos RPC.
@@ -8,11 +8,23 @@ Status: F2.A concluída localmente em 27/10/2026. F2 completa ainda pendente.
 - [x] 002.4 Testar isolamento/repetição/concorrência/auditoria/carteira reais.
 - [x] 002.5 Verificar interface responsiva/teclado, lint/tipos/unidade/build/SQL.
 - [x] 002.6 Registrar evidências e limites, encerrar serviços locais.
-- [ ] 002.7 F2.B — produtos/SKU/arquivos (não iniciar automaticamente).
-- [ ] 002.8 F2.C — versões e atribuições de preço/comissão/pagamento.
+- [x] 002.7 F2.B — produtos/SKU/arquivos (validação local; evidências em produtos/tasks.md).
+- [x] 002.8 F2.C — versões e atribuições de preço/comissão/pagamento (evidências em comercial/tasks.md).
 - [ ] 002.9 F2.D — catálogo/cotação buyer e prova de projeções comerciais.
 
 ## Entrega e preservação
+
+Atualização F2.C: branch feat/002-commercial-versions preserva todas as alterações
+F2.B. Migration 20261027020000, oito tabelas/14 RPCs novas, UI/admin e testes
+reais. Total 17 tabelas de negócio FORCE RLS/40 RPCs. Spec/plano/evidências em
+comercial/, guia docs/20. Sem nova dependência, commit ou implantação automática.
+Próxima etapa F2.D, catálogo/cotação buyer; não iniciada. Seções abaixo são o
+histórico de F2.B e F2.A, com contagens/limites das respectivas rodadas.
+
+Atualização: F2.B autorizada pelo pedido de continuidade e validada na branch
+feat/002-products-sku, a partir de 4403916. Produtos, SKU e fotos privadas em
+produtos/spec.md, plan.md e tasks.md; guia docs/19. Nenhuma publicação automática
+desse incremento. O restante desta seção preserva o histórico da F2.A.
 
 Branch feat/002-customers-portfolio criada a partir do workspace existente,
 preservando alterações ainda não commitadas de F0/F1. Migration incremental

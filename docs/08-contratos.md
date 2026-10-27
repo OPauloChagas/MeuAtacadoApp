@@ -130,7 +130,45 @@ SELLER_UNAVAILABLE, STALE_VERSION e IDEMPOTENCY_CONFLICT. Adaptadores traduzem
 mensagens pt-BR e não expõem SQL. Detalhes em docs/18; preços/condições não foram
 implementados neste recorte.
 
+## Produtos e fotos em F2.B
+
+GET /api/products usa q/status/page/pageSize (índice 0, padrão 20, máximo 100),
+com data.items/total/page/pageSize restritos ao contexto. GET /api/products/{id}
+retorna DTO explícito sem path, preço/custo/comissão. Admin lê ativos/inativos;
+seller somente ativos; buyer aguarda F2.D. createProduct/editProduct são Server
+Actions com sessão/admin derivados e validação no servidor.
+
+GET /api/products/{id}/photo revalida contexto/produto, baixa com JWT comum e
+recodifica WebP; private/no-store/nosniff, sem URL assinada ou cache de imagem
+compartilhado. POST no mesmo endpoint verifica Origin e admin antes de ler
+multipart: operation upload/remove/cleanup, revision e key quando aplicáveis,
+photo somente para upload. Até 3000000 bytes por arquivo, corpo limitado.
+Retorna data.destination interno e envelope requestId; GET não muda estado.
+
+RPCs concretas na migration 20261027010000: list_products/get_product,
+create_product/update_product, prepare_product_photo/set_product_photo,
+retire_product_photo/finish_product_photo_cleanup. Fotos são operações em
+etapas, com aposentadoria transacional antes de apagar bytes. Falha de limpeza
+não desfaz foto já alterada; a interface informa pendência e permite retomar.
+STORAGE_UNAVAILABLE/PHOTO_UNAVAILABLE não expõem caminhos ou erros brutos.
+Detalhes em docs/19 e na spec de produtos; tipos/defaults na migration.
+
+## Versões e atribuições em F2.C
+
+F2.C implementa GET /api/commercial (scopes tables/versions/version/terms/
+customer/assignments) e /api/commercial/options (allowlist price/commission/
+payment/product/customer/seller), somente admin, DTOs explícitos e private/
+no-store. Actions específicas chamam 14 novas RPCs; sessão/vínculo são derivados
+no servidor. Decimais no JSON são strings verificadas via argumento jsonb;
+preço numeric(18,2) positivo e taxa numeric(7,4) 0–100. Datas de calendário
+1900–9999 no fuso do tenant; início vazio usa relógio do banco, fim exclusivo.
+Publicação sela itens/datas e recusa interseção. Revisão e chave de idempotência
+são obrigatórias nas mutações aplicáveis. Contratos concretos na migration
+20261027020000 e catálogo completo em docs/20.
+
 ## Exemplo de submissão
+
+Contrato futuro da etapa de pedidos, não implementado em F2.C.
 
 ```json
 {

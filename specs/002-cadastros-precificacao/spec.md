@@ -1,7 +1,7 @@
 # 002 — Cadastros e precificação
 
-Status: F2.A implementada e validada localmente em 27/10/2026; F2.B–D pendentes.
-Dependência: F1 local validada. Sem implantação deste incremento.
+Status: F2.A validada e publicada; F2.B/C validadas localmente em 27/10/2026.
+F2.D pendente. Base publicada 4403916; este incremento não publica automaticamente.
 Requisitos da fase: RF05–08, RN01–03/05–13/29–30, RS01–08 aplicáveis e UX01–05.
 
 ## Objetivo e sequência
@@ -10,6 +10,14 @@ Entregar cadastros e precificação antes de pedidos, com cliente/carteira,
 catálogo, versões de preço/comissão e projeção buyer autorizada. Incrementos:
 F2.A clientes/carteira; F2.B produtos; F2.C versões/atribuições comerciais;
 F2.D catálogo e cotação. Não iniciar automaticamente o próximo incremento.
+
+F2.B está detalhada em [produtos/spec.md](produtos/spec.md), com plano e tarefas
+próprios. RF06 inclui SKU/cadastro e foto privada; preço continua em F2.C/D.
+
+F2.C está em [comercial/spec.md](comercial/spec.md), com plano e evidências:
+versões imutáveis de preço/comissão, vigência e atribuições, cadastro de condição
+de pagamento e valores exatos. F2.D ainda resolverá projeções de catálogo/cotação
+buyer. Configurações iniciais permanecem adiadas; não iniciar outra etapa agora.
 
 ## Recorte F2.A — clientes e carteira
 
@@ -62,7 +70,7 @@ AC09. Cadastro, edição e carteira funcionam em 360/1440 e por teclado, com
 estados de envio, erro, vazio e sucesso, sem ações falsas de módulos futuros.
 AC10. Migrations sobem do zero e verificações locais reais são registradas.
 
-## Excluído desta execução
+## Excluído do recorte F2.A (histórico)
 
 Produtos/SKU/imagens/Storage, preços e comissão, condição de pagamento, catálogo,
 pedidos/financeiro, importação, exclusão de histórico, implantação/migration

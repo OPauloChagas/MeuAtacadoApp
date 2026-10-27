@@ -8,7 +8,7 @@ status global restrito ao operador; tenants/memberships têm revision e
 updated_at. Auditoria acrescenta actor_kind/actor_membership_id para distinguir
 operador de plataforma e usuário. F2.A acrescenta a customers contato/endereço
 JSON, revision, updated_at e document_key gerado normalizado, único por tenant;
-preço e condição de pagamento permanecem pendentes. A tabela técnica privada provision_requests
+F2.C acrescenta FKs compostas price_list_id/payment_term_id. A tabela técnica privada provision_requests
 guarda idempotência anterior à criação do tenant (ADR-011). A tabela abaixo
 continua representando o modelo completo pretendido; detalhes do incremento em
 [fundação de identidade](15-identidade-fundacao.md).
@@ -22,6 +22,14 @@ exigem revisão nas atualizações e persistem auditoria/idempotência na mesma
 transação. Detalhes em [clientes e carteira](18-clientes-carteira.md).
 
 ## Entidades
+
+F2.C concretiza price_lists/price_list_versions/price_list_items,
+commission_tables/commission_versions/commission_items, payment_terms e
+seller_commission_assignments (migration 20261027020000). São 17 tabelas de
+negócio com FORCE RLS e 40 RPCs públicas autorizadas. Versões publicadas e itens
+são imutáveis; exclusões GiST impedem períodos sobrepostos. Contador, revisão,
+idempotência e auditoria são transacionais. Detalhes em docs/20 e ADR-017;
+catálogo buyer, pedidos e snapshots continuam futuros.
 
 F1.C acrescenta a invitations: expires_at, delivery_token, lease_until,
 attempt_count (até 5), failure_code, accepted_by_user_id,
@@ -38,8 +46,8 @@ entrega, resposta privada de idempotência ou credenciais do Auth.
 | memberships | id, tenant_id, user_id, role, customer_id opcional, status |
 | invitations | id, tenant_id, email, role, customer_id, state, provider_reference; sem token em log |
 | customers | id, tenant_id, document, name, contact, address, seller_membership_id opcional, price_list_id, payment_term_id, status |
-| categories | id, tenant_id, name, active |
-| products | id, tenant_id, sku, name, description, category_id, sales_unit, package_content, min_quantity, quantity_multiple, photo_path, active |
+| products | id, tenant_id, sku, name, description, category textual, sales_unit, package_content, min_quantity, quantity_multiple, photo_id opcional, active, revision, created_at, updated_at |
+| product_photos | id, tenant_id, product_id, actor_user_id, object_path, checksum, state pending/active/retired, expires_at, purged_at, created_at |
 | price_lists | id, tenant_id, name, active |
 | price_list_versions | id, tenant_id, price_list_id, version, valid_from, valid_until, state |
 | price_list_items | id, tenant_id, version_id, product_id, unit_price |
@@ -68,6 +76,13 @@ entrega, resposta privada de idempotência ou credenciais do Auth.
 | tenant_counters | tenant_id, kind, next_number; incremento transacional por tipo |
 
 ## Relações principais
+
+F2.B concretiza produtos e fotos conforme ADR-016. Categoria é rótulo textual,
+sem tabela categories neste recorte. SKU normalizado em maiúsculas/trim é único
+por tenant. product_photos referencia products por (tenant_id,product_id);
+products.photo_id usa FK (tenant_id,id,photo_id) para impedir trocar foto com
+outro produto/tenant. Há no máximo uma foto ativa e uma pendente por produto.
+Path UUID da reserva nunca muda. Nenhum SELECT/DML direto para authenticated.
 
 ```mermaid
 erDiagram

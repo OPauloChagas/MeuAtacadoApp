@@ -44,8 +44,13 @@ pretendido, não uma afirmação de que todas as telas já existem.
 | `/empresa/clientes/{id}` | F2.A: admin edita cadastro/carteira; seller somente contato/endereço autorizado |
 | `/cliente/minha-conta` | F2.A: leitura do próprio cadastro, sem carteira ou campos internos |
 | `/empresa/produtos` | Catálogo administrativo e cadastro por SKU |
-| `/empresa/precos` | Tabelas, versões, vigência e editor de itens |
-| `/empresa/comissoes` | Configuração, apuração e pagamentos; seller vê somente sua consulta |
+| `/empresa/produtos/novo` | F2.B: cadastro do admin; foto opcional após salvar |
+| `/empresa/produtos/{id}` | F2.B: admin edita/ativa/foto; seller lê somente produto ativo |
+| `/empresa/tabelas-preco` | F2.C: tabelas, versões, vigência e editor de itens, somente admin |
+| `/empresa/comissoes` | F2.C: tabelas e versões, somente admin; apuração/pagamentos futuros |
+| `/empresa/comissoes/atribuicoes` | F2.C: atribuição por vendedor/período, encerramento e cancelamento auditados |
+| `/empresa/condicoes-pagamento` | F2.C: parcelas/prazos do cadastro, sem gerar títulos |
+| `/empresa/clientes/{id}/condicoes` | F2.C: atribuição de tabela e condição pelo admin |
 | `/empresa/pedidos` | Lista por status/cliente/data; detalhe com linha do tempo |
 | `/empresa/financeiro` | Receber, baixas, detalhe, recibos e estornos |
 | `/empresa/relatorios` | Tipo, filtros, totais e exportação |

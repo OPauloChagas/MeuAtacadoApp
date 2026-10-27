@@ -11,7 +11,7 @@ export default class SafeReporter implements Reporter {
         try { const url = new URL(value); return `${url.origin}${url.pathname}${url.search ? "?[parâmetros omitidos]" : ""}`; }
         catch { return "[URL omitida]"; }
       }).slice(0, 1200));
-      console.log(result.errors[0]?.stack?.match(/(?:access|recovery|administration|customers|helpers)\.spec\.ts:\d+:\d+/)?.[0] ?? "");
+      console.log(result.errors[0]?.stack?.match(/(?:access|recovery|administration|customers|products|commercial|helpers)\.spec\.ts:\d+:\d+/)?.[0] ?? "");
       console.log(`Local: ${test.location.file}:${test.location.line}`);
     }
   }

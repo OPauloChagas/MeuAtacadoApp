@@ -236,6 +236,50 @@ para convites não foram inventados; envio permanece indisponível. Habilitar
 recuperação após SMTP/template compatível e teste real. Evidências na publicação
 da spec 002; não confundir disponibilidade configurada com autorização de negócio.
 
+## ADR-016 — Produtos e fotos privadas por contexto
+
+Status: implementada e validada localmente, F2.B, 27/10/2026. SKU é normalizado em
+maiúsculas/trim e único por tenant; categoria é rótulo textual no produto,
+sem taxonomia separada. Não introduzir preço/custo ou catálogo buyer antes de
+resolver atribuições comerciais de F2.C/D. Seller lê somente produtos ativos.
+
+Produtos/fotos têm RLS, FKs compostas, RPCs do executor dedicado e mutações com
+revisão/idempotência/auditoria. Fotos usam JWT comum, bucket privado e reserva
+autorizada de caminho UUID; pasta isolada sem reserva não autoriza. App valida
+e recodifica conteúdo para WebP, sem metadados, também ao servir o arquivo;
+não confia no MIME declarado por upload direto. Leitura por proxy privado
+no-store com revalidação, sem URLs públicas/assinadas persistidas ou otimizador
+compartilhado. Upload/troca/limpeza são etapas explícitas porque Storage e DB
+não compartilham transação. Arquivo aposentado não volta a ser foto corrente.
+
+O limite inicial adotado é 3 MB (3000000 bytes), dentro do teto proposto de 5 MB,
+para multipart via Route Handler caber no limite de corpo das funções Vercel.
+Não elevar o limite global de Server Actions. Ampliar exige outro transporte.
+Referências oficiais: [Vercel limites](https://vercel.com/docs/functions/limitations#request-body-size),
+[Storage RLS](https://supabase.com/docs/guides/storage/security/access-control) e
+[sharp](https://sharp.pixelplumbing.com/api-output/).
+
+## ADR-017 — Versões comerciais imutáveis e períodos explícitos
+
+Status: implementada e validada localmente, F2.C, 27/10/2026. Preços e taxas são numeric
+exatos no PostgreSQL e strings no JSON; interface normaliza com BigInt e não
+arredonda excesso de casas. Publicação sela versão e itens, incluindo datas.
+Exclusões GiST e lock de tenant impedem sobreposição, inclusive concorrência.
+Número da versão vem de contador da tabela sob lock, com auditoria/idempotência.
+
+Datas agendadas são meia-noite no fuso do tenant; início vazio significa relógio
+do banco ao publicar/atribuir. Fim é exclusivo e opcional. Versão sem fim não é
+reescrita para acomodar outra: usar janelas finitas ou nova tabela e atribuição.
+Isso preserva RN08 sem criar exceção silenciosa à imutabilidade. Atribuição
+de comissão tem encerramento/cancelamento explícito, não retroativo e auditado;
+ela não altera as versões publicadas nem futuros snapshots de pedidos.
+
+Condição de pagamento é cadastro revisado; snapshots pertencem à futura
+confirmação F3. Cliente mantém FKs compostas para tabela/condição e usa sua
+revisão existente. Administração é por vínculo selecionado; seller/buyer
+aguardam projeções F2.D, sem acesso cru a preços/percentuais. Valores, datas,
+estado, tenant, ator e referência são validados no RPC além do servidor web.
+
 ## Referências técnicas oficiais
 
 Consultadas em 24/10/2026. Reconsultar ao implementar para APIs, versões e limites atuais. Estes links embasam mecanismos da plataforma; as regras comerciais deste pacote são propostas específicas do projeto.

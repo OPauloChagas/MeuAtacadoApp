@@ -13,6 +13,8 @@ export function AccessShell({ context, children }: { context: AccessContext; chi
       <nav aria-label="Menu principal" className="workspace-nav">
         <a href={dashboardPath(context.role)}>Início</a>
         {context.role !== "buyer" && <Link prefetch={false} href="/empresa/clientes">{context.role === "admin" ? "Clientes" : "Minha carteira"}</Link>}
+        {context.role !== "buyer" && <Link prefetch={false} href="/empresa/produtos">Produtos</Link>}
+        {context.role === "admin" && <><Link prefetch={false} href="/empresa/tabelas-preco">Tabelas de preço</Link><Link prefetch={false} href="/empresa/comissoes">Comissões</Link><Link prefetch={false} href="/empresa/condicoes-pagamento">Condições de pagamento</Link></>}
         {context.role === "buyer" && <Link prefetch={false} href="/cliente/minha-conta">Minha conta</Link>}
         {context.role === "admin" && <a href="/empresa/configuracoes">Minha empresa</a>}
         {context.role === "admin" && <a href="/empresa/usuarios">Usuários e convites</a>}

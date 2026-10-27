@@ -86,3 +86,11 @@ dd { margin: 0; font-weight: 600; overflow-wrap: anywhere; }
 .customer-fields, .seller-picker { border: 1px solid #cedbd2; border-radius: .65rem; padding: 1rem; min-width: 0; }
 .customer-fields legend, .seller-picker legend { font-weight: 700; padding: 0 .4rem; }
 .inline-actions { display: flex; flex-wrap: wrap; gap: .5rem 1rem; align-items: center; }
+/* Photos are fetched with the active session; never use shared image optimization. */
+.product-photo { display: block; max-width: 100%; height: auto; max-height: 320px; object-fit: contain; border-radius: 12px; margin-bottom: 1rem; }
+.field textarea { font: inherit; width: 100%; min-height: 7rem; resize: vertical; border: 1px solid #8ba496; border-radius: .6rem; padding: .65rem .8rem; color: #17332d; }
+.data-grid { display: grid; gap: 1rem; grid-template-columns: repeat(auto-fit,minmax(min(100%,12rem),1fr)); }
+.data-grid dt { font-weight: 600; }
+.data-grid dd { margin: .25rem 0; overflow-wrap: anywhere; }
+.product-editor-fields { display: grid; gap: 1rem; border: 0; padding: 0; margin: 0; min-width: 0; }
+.sr-only { position: absolute; width: 1px; height: 1px; padding: 0; margin: -1px; overflow: hidden; clip-path: inset(50%); white-space: nowrap; border: 0; }
