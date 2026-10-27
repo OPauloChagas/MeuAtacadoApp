@@ -21,6 +21,16 @@ Cabeçalho sempre mostra empresa e contexto ativo. Meu perfil, troca de contexto
 
 ## Inventário de telas
 
+F1.B implementa /login, /recuperar-senha, /auth/confirm (confirmação POST),
+/definir-senha, /selecionar-acesso, /sem-acesso e os dois espaços de início.
+/empresa/configuracoes inicialmente apresentava identificação; F1.C acrescenta
+edição dos dados permitidos e /empresa/usuarios com vínculos, convites,
+tentativas e cancelamento. /auth/invite confirma identidade via POST e
+/convites/{id} permite revisar e aceitar o acesso, com senha para conta nova.
+Menus mostram somente páginas disponíveis; indicadores comerciais e ações de
+módulos futuros não são simulados. O inventário abaixo descreve o produto final
+pretendido, não uma afirmação de que todas as telas já existem.
+
 | Tela/rota sugerida | Conteúdo e ação principal |
 | --- | --- |
 | `/login` | E-mail, senha, mostrar senha, entrar, recuperar acesso |
@@ -30,6 +40,9 @@ Cabeçalho sempre mostra empresa e contexto ativo. Meu perfil, troca de contexto
 | `/empresa/configuracoes` | Dados comerciais, contato, endereço, timezone e logo |
 | `/empresa/usuarios` | Convites, função, estado, carteira e vínculo de cliente |
 | `/empresa/clientes` | Busca por nome/documento, filtros, cadastro e detalhe |
+| `/empresa/clientes/novo` | F2.A: cadastro exclusivo do admin |
+| `/empresa/clientes/{id}` | F2.A: admin edita cadastro/carteira; seller somente contato/endereço autorizado |
+| `/cliente/minha-conta` | F2.A: leitura do próprio cadastro, sem carteira ou campos internos |
 | `/empresa/produtos` | Catálogo administrativo e cadastro por SKU |
 | `/empresa/precos` | Tabelas, versões, vigência e editor de itens |
 | `/empresa/comissoes` | Configuração, apuração e pagamentos; seller vê somente sua consulta |

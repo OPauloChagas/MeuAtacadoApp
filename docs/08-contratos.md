@@ -41,6 +41,95 @@ HTTP: 400 entrada malformada, 401 identidade ausente/inválida, 403 operação v
 | reverseCommissionPayment | paymentId, reason, key | Admin; regularização externa declarada |
 | exportReport | tipo, filtros, formato | Projeção autorizada; limites de tamanho |
 
+## Contratos de persistência entregues em F1.A
+
+Somente no banco local, sem adaptador de aplicação/UI ainda. Contextos usam
+`get_my_contexts()` e `get_current_context(p_membership_id uuid)`; a seleção é
+validada contra auth.uid(), nunca autorização por UUID enviado. A projeção
+`get_tenant_admin(p_membership_id uuid)` exige admin ativo.
+
+`update_tenant(p_membership_id uuid, p_expected_revision bigint, p_legal_name
+text, p_trade_name text, p_contact jsonb, p_address jsonb, p_idempotency_key uuid)`
+aceita objetos contact/address de até 4096 bytes cada. Não altera documento,
+fuso ou estado. Retorna tenant_id, revision e audit_event_id.
+
+`set_membership_status(p_membership_id uuid, p_target_membership_id uuid,
+p_status text, p_idempotency_key uuid)` aceita active/inactive, protege o último
+admin e retorna membership_id, status, revision e audit_event_id. Não altera
+função, identidade, tenant, cliente nem carteira nesta etapa.
+
+Erros SQL de persistência P0001: ACCESS_DENIED, VALIDATION_ERROR, STALE_VERSION,
+IDEMPOTENCY_CONFLICT e LAST_ADMIN. O futuro adaptador tipado deve traduzir esses
+erros para os contratos de aplicação acima, inclusive STALE_REVISION e
+LAST_ADMIN_REQUIRED; as respostas atuais do PostgREST não são o envelope da
+aplicação. Não enviar erros internos do banco ao usuário. Provisionamento é
+privado e exclusivo do operador; detalhes em docs/15.
+
+## Adaptadores de identidade entregues em F1.B
+
+GET `/api/identity/context` devolve somente o contexto selecionado/revalidado;
+GET `/api/identity/company` devolve identificação da empresa somente para admin.
+Respostas usam o envelope data/error/requestId descrito acima, com requestId
+gerado no servidor e Cache-Control private/no-store. Erros: UNAUTHENTICATED
+(401), FORBIDDEN (403), UNAVAILABLE (503), sem detalhes SQL.
+
+POST `/auth/context` aceita somente membership_id como seleção; POST
+`/auth/logout` encerra a sessão local. Ambos verificam Origin contra APP_URL e
+retornam 303 para destinos internos fixos quando bem-sucedidos. GET não executa
+essas operações. Formulários Auth usam Server Actions tipadas e mensagens
+genéricas; a documentação local completa está em docs/16.
+
+## Administração e convites entregues em F1.C
+
+Server Actions resolvem o contexto ativo no servidor; campos de tenant/ator no
+formulário não concedem autoridade. saveCompany chama update_tenant com revisão e
+key. changeMemberStatus chama set_membership_status e preserva o último admin.
+Função/cliente de vínculo existente não são reescritos nesta etapa; atribuição de
+novo acesso é uma aprovação por convite.
+
+RPCs novas: get_tenant_access(membership,page), request_invitation(membership,
+email,role,customer,key), claim_invitation_delivery(membership,invitation,
+attempt,retry=false), finish_invitation_delivery(membership,invitation,attempt,
+sent,failure_code), cancel_invitation(membership,invitation,key),
+get_my_invitation(invitation) e accept_invitation(invitation,display_name,key).
+Tipos concretos e defaults estão na migration versionada. Somente os primeiros
+cinco exigem admin; os dois últimos exigem identidade/e-mail do destinatário e
+aprovação válida. Todos usam executor dedicado sob RLS.
+
+Erros de persistência previstos: ACCESS_DENIED, VALIDATION_ERROR,
+IDEMPOTENCY_CONFLICT, INVALID_STATE e RATE_LIMITED; UI traduz em mensagens pt-BR,
+sem detalhes Auth/SMTP/SQL. Projeção de acessos pagina 25 vínculos/convites e até
+200 clientes ativos. claim retorna dados de envio somente ao admin autorizado.
+Tokens Auth permanecem exclusivamente no adaptador e no e-mail do destinatário.
+Sem endpoint público para criar tenant/admin. Detalhes e reconciliação em docs/17.
+
+## Clientes e carteira entregues em F2.A
+
+GET /api/customers recebe q/status/page/pageSize; GET
+/api/customers/sellers recebe q/page/pageSize. Nesta implementação page é
+índice iniciado em 0, pageSize padrão 20/máximo 100; data contém items/total/
+page/pageSize (no RPC, page_size). Total é restrito ao contexto. GET /api/customers/{id} retorna
+projeção de detalhe; buyer só pode obter seu próprio cliente e não consulta listas.
+Todos usam data/error/requestId e private/no-store, sem mutations por GET.
+
+RPCs: list_customers(membership,search,status,page,page_size),
+list_customer_sellers(membership,search,page,page_size),
+get_customer(membership,customer), create_customer(membership,document,name,
+contact,address,seller,key), update_customer(membership,customer,expected_revision,
+document,name,contact,address,seller,status,key), update_customer_contacts(
+membership,customer,expected_revision,contact,address,key). Tipos e defaults
+estão na migration 20261027000000. Ator/tenant vêm da sessão verificada; seller
+usa somente a operação de contatos. Escritas retornam customer_id/revision/
+audit_event_id. Repetição exige autorização atual antes da resposta persistida.
+
+Buyer recebe somente id/name/document/status/contact/address; admin também
+recebe revisão e atribuição de seller. Contact permite email/phone e address
+street/number/district/city/state/postal_code; projeção explícita também no RPC.
+Erros previstos: ACCESS_DENIED, VALIDATION_ERROR, DOCUMENT_IN_USE,
+SELLER_UNAVAILABLE, STALE_VERSION e IDEMPOTENCY_CONFLICT. Adaptadores traduzem
+mensagens pt-BR e não expõem SQL. Detalhes em docs/18; preços/condições não foram
+implementados neste recorte.
+
 ## Exemplo de submissão
 
 ```json

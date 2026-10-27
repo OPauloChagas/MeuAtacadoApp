@@ -1,0 +1,58 @@
+import { randomBytes } from "node:crypto";
+import { expect, test } from "@playwright/test";
+import type { Fixtures } from "./setup";
+
+test("recuperação real, resposta uniforme, confirmação POST e token de uso único", async ({ page, request }, info) => {
+  const fixture = JSON.parse(process.env.E2E_IDENTITY_FIXTURES ?? "null") as Fixtures;
+  const actor = fixture.actors[info.project.name === "auth-360" ? "recovery360" : "recovery1440"];
+  await page.goto("/definir-senha");
+  await expect(page).toHaveURL(/\/recuperar-senha$/);
+  await page.getByLabel("E-mail").fill("inexistente-recuperacao@example.test");
+  await page.getByRole("button", { name: "Enviar instruções" }).click();
+  await expect(page.getByRole("status")).toContainText("Se houver uma conta");
+  const generic = await page.getByRole("status").textContent();
+  await page.getByLabel("E-mail").fill(actor.email);
+  await page.getByRole("button", { name: "Enviar instruções" }).click();
+  await expect(page.getByRole("status")).toHaveText(generic!);
+  let messageId = "";
+  await expect.poll(async () => {
+    const response = await request.get(`http://127.0.0.1:54324/api/v1/search?query=to:${encodeURIComponent(actor.email)}`);
+    if (!response.ok()) return false;
+    const messages = await response.json();
+    messageId = messages.messages?.[0]?.ID ?? "";
+    return Boolean(messageId);
+  }, { message: "E-mail local de recuperação deve ser entregue", timeout: 15_000 }).toBe(true);
+  const email = await (await request.get(`http://127.0.0.1:54324/api/v1/message/${messageId}`)).json();
+  const html = email.HTML as string;
+  const match = html.match(/href="([^"]+)"/);
+  expect(Boolean(match)).toBe(true);
+  const recoveryUrl = new URL(match![1]!.replaceAll("&amp;", "&"));
+  expect(recoveryUrl.origin === "http://127.0.0.1:3100").toBe(true);
+  expect(recoveryUrl.pathname).toBe("/auth/confirm");
+  // A scanner/reload can GET twice without creating a session or consuming OTP.
+  await page.goto(recoveryUrl.href);
+  expect((await page.request.get("/api/identity/context")).status()).toBe(401);
+  await page.reload();
+  await page.getByRole("button", { name: "Confirmar recuperação" }).click();
+  await expect(page).toHaveURL(/\/definir-senha$/);
+  const password = randomBytes(24).toString("base64url");
+  await page.getByLabel("Nova senha", { exact: true }).fill(password);
+  await page.getByLabel("Repita a nova senha").fill(password);
+  await page.getByRole("button", { name: "Salvar nova senha" }).click();
+  await expect(page).toHaveURL(/\/login\?senha=atualizada$/);
+  expect((await page.request.get("/api/identity/context")).status()).toBe(401);
+  await page.getByLabel("E-mail", { exact: true }).fill(actor.email);
+  await page.getByLabel("Senha", { exact: true }).fill(password);
+  await page.getByRole("button", { name: "Entrar", exact: true }).click();
+  await expect(page).toHaveURL(/\/sem-acesso$/);
+  await page.getByRole("button", { name: "Sair da conta" }).click();
+  await expect(page).toHaveURL(/\/login$/);
+  expect((await page.request.get("/api/identity/context")).status()).toBe(401);
+  await page.goto(recoveryUrl.href);
+  await page.getByRole("button", { name: "Confirmar recuperação" }).click();
+  await expect(page.getByRole("main").getByRole("alert")).toContainText("inválido ou expirou");
+  expect((await page.request.get("/api/identity/context")).status()).toBe(401);
+  await page.goto("/auth/confirm?token_hash=invalido&type=recovery&next=https://invasor.example");
+  await expect(page.getByRole("main").getByRole("alert")).toContainText("inválido ou expirou");
+  expect(new URL(page.url()).origin).toBe("http://127.0.0.1:3100");
+});

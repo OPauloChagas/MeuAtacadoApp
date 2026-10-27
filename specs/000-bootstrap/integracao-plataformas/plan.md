@@ -12,7 +12,8 @@
    senhas/tokens pelo chat.
 4. Inspecionar nomes/escopos das variáveis existentes sem revelar valores;
    configurar apenas NEXT_PUBLIC_SUPABASE_URL e
-   NEXT_PUBLIC_SUPABASE_PUBLISHABLE_KEY nos destinos acordados.
+   NEXT_PUBLIC_SUPABASE_PUBLISHABLE_KEY em .env.local e Vercel Development/Preview.
+   Não compartilhar o Supabase de desenvolvimento com o destino Production.
 5. Validar configuração e conexão somente por leitura; documentar o resultado.
    Migrations remotas continuam fora do escopo.
 6. Pelo pedido explícito posterior de commit/push/deploy, revisar arquivos e

@@ -1,4 +1,4 @@
-name: F0 checks
+name: Local checks
 
 on:
   push:
@@ -46,6 +46,15 @@ jobs:
       - run: npm run db:reset
       - run: npm run db:lint
       - run: npm run db:test
+      - run: npm run test:identity
+      - run: npm run build
+      - run: npx playwright install --with-deps chromium
+      - run: npm run db:reset
+      - run: npm run test:auth
+      - run: npm run db:reset
+      - run: npm run test:admin
+      - run: npm run db:reset
+      - run: npm run test:customers
       - name: Stop local Supabase
         if: always()
         run: npm run db:stop

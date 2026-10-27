@@ -4,16 +4,16 @@ export default function HomePage() {
       <p className="eyebrow">Atacado · Desenvolvimento</p>
       <h1>Uma base para o seu atacado.</h1>
       <p className="intro">
-        O ambiente inicial está pronto. O acesso de fornecedores e compradores
-        será disponibilizado na próxima etapa.
+        Seu espaço para conectar fornecedores e compradores, com acesso
+        conforme o vínculo da sua conta.
       </p>
       <section aria-labelledby="status-title">
-        <span className="status">Fase inicial</span>
-        <h2 id="status-title">Estrutura em preparação</h2>
+        <span className="status">Acesso à plataforma</span>
+        <h2 id="status-title">Entre no seu espaço</h2>
         <p>
-          Esta versão contém a base técnica do aplicativo. Login, cadastros e
-          operações comerciais ainda não estão disponíveis.
+          Utilize o e-mail cadastrado pelo seu fornecedor para acessar sua conta.
         </p>
+        <a className="button secondary-link" href="/login">Entrar na minha conta</a>
       </section>
       <footer>Atacado · Aplicativo em desenvolvimento</footer>
     </main>

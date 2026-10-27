@@ -2,7 +2,34 @@
 
 Modelo para orientar migrations futuras; não é DDL executável. IDs UUID, instantes `timestamptz`, datas de vencimento `date`, dinheiro `numeric(18,2)`, percentuais `numeric(7,4)`, quantidades inteiras positivas. Dinheiro via JSON como string decimal. Avaliar limites do negócio antes de ampliar precisão.
 
+Implementação parcial F1.A: tenants, profiles, memberships, customers mínimos,
+invitations (estrutura), audit_events e idempotency_keys. Profiles acrescenta
+status global restrito ao operador; tenants/memberships têm revision e
+updated_at. Auditoria acrescenta actor_kind/actor_membership_id para distinguir
+operador de plataforma e usuário. F2.A acrescenta a customers contato/endereço
+JSON, revision, updated_at e document_key gerado normalizado, único por tenant;
+preço e condição de pagamento permanecem pendentes. A tabela técnica privada provision_requests
+guarda idempotência anterior à criação do tenant (ADR-011). A tabela abaixo
+continua representando o modelo completo pretendido; detalhes do incremento em
+[fundação de identidade](15-identidade-fundacao.md).
+
+F2.A restringe SELECT de authenticated às colunas mínimas de identificação de
+customers. Contato/endereço e carteira são projetados por RPC e pelo papel do
+contexto selecionado; campos desconhecidos dos JSONs não são encaminhados.
+Documento empresarial é comparado por letras/números maiúsculos sem pontuação,
+sem validação fiscal externa. Escritas compartilham lock do tenant com F1,
+exigem revisão nas atualizações e persistem auditoria/idempotência na mesma
+transação. Detalhes em [clientes e carteira](18-clientes-carteira.md).
+
 ## Entidades
+
+F1.C acrescenta a invitations: expires_at, delivery_token, lease_until,
+attempt_count (até 5), failure_code, accepted_by_user_id,
+accepted_membership_id e acceptance_response. O vínculo aceito tem FK composta
+por tenant; a identidade Auth é global. Aprovação aberta é única por
+tenant/e-mail/função/cliente. accepted e cancelled são terminais; uma nova
+aprovação é outro registro. Projeções administrativas nunca expõem token de
+entrega, resposta privada de idempotência ou credenciais do Auth.
 
 | Tabela | Campos/relações centrais |
 | --- | --- |

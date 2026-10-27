@@ -21,7 +21,7 @@ Cada fornecedor é um tenant. Administrador e vendedor são funções internas d
 2. Leia [premissas e decisões](docs/00-escopo-premissas.md). As escolhas de negócio adicionais são propostas explícitas, não requisitos que você já aprovou.
 3. Abra o projeto no VS Code. Codex deve consultar [AGENTS.md](AGENTS.md); Claude deve consultar [CLAUDE.md](CLAUDE.md).
 4. Cole o [prompt inicial](prompts/01-iniciar.md) na ferramenta escolhida.
-5. Consulte o bootstrap em `specs/000-bootstrap/` e o [guia local](docs/13-ambiente-local.md). A próxima implementação será `specs/001-identidade-multitenancy/`. Revise os artefatos e as evidências antes da próxima fase.
+5. Consulte o bootstrap em `specs/000-bootstrap/` e o [guia local](docs/13-ambiente-local.md). F1 foi validada localmente, da [fundação do banco](docs/15-identidade-fundacao.md) à administração e convites. O incremento atual é F2.A, [clientes e carteira](docs/18-clientes-carteira.md), na spec `002-cadastros-precificacao`. Revise os artefatos e as evidências antes de iniciar produtos (F2.B).
 6. Use uma branch por funcionalidade. Se Codex e Claude trabalharem ao mesmo tempo, use branches/worktrees diferentes e integre por revisão; não editem os mesmos arquivos simultaneamente.
 
 As ferramentas podem variar no carregamento automático dos arquivos; o prompt manda lê-los explicitamente.
@@ -44,13 +44,22 @@ As ferramentas podem variar no carregamento automático dos arquivos; o prompt m
 | [11 — Operação](docs/11-deploy-operacao.md) | Vercel, Supabase e recuperação |
 | [12 — Decisões](docs/12-decisoes.md) | ADRs e fontes técnicas |
 | [13 — Ambiente local](docs/13-ambiente-local.md) | Versões fixadas, instalação e verificações de F0 |
+| [14 — Supabase remoto](docs/14-supabase-remoto.md) | Projeto de desenvolvimento, ambientes e verificações da conexão |
+| [15 — Fundação de identidade](docs/15-identidade-fundacao.md) | Banco/RLS/RPCs locais de F1.A, testes reais e limites |
+| [16 — Autenticação e contexto](docs/16-autenticacao-contexto.md) | Login, recuperação local, seleção e testes F1.B |
+| [17 — Administração e convites](docs/17-administracao-convites.md) | Empresa, vínculos, entrega/aceite e reconciliação local F1.C |
 
 ## Executar a base local
 
 Base F0 publicada: [meuatacadoapp.vercel.app](https://meuatacadoapp.vercel.app).
-A página inicial já está disponível; integração Supabase e identidade continuam
-pendentes. Essa publicação foi feita pelo CLI Vercel; sincronização GitHub e CI
-dependem do primeiro push autenticado.
+A página inicial já está disponível, e o primeiro push foi confirmado no GitHub.
+O Supabase `meuatacado-dev` está provisionado e configurado para desenvolvimento
+local e Vercel Development/Preview. A fundação de identidade de F1.A está no banco
+Docker local; ainda não foi aplicada ao remoto. A F1.B conecta a interface ao
+ambiente local, com login, recuperação e seleção de acesso.
+F1.C acrescenta edição da empresa, controle de vínculos e convites locais com
+repetição segura e tratamento de falhas de envio.
+Consulte a [configuração remota](docs/14-supabase-remoto.md).
 
 Use Node.js 24.22.1 LTS e npm 11.11.1 (Node fixado em `.nvmrc` e `.node-version`).
 
@@ -65,6 +74,12 @@ navegador: `npx playwright install chromium` e `npm run test:e2e` após o build.
 Supabase Docker, configuração de ambiente e verificações SQL estão no
 [guia local](docs/13-ambiente-local.md); evidências reais em
 [tarefas de F0](specs/000-bootstrap/tasks.md).
+
+Para revisar a autenticação com Supabase Docker: `npm run db:start` e
+`npm run dev:local`. Esse comando preserva .env.local e utiliza somente a stack
+local. Fluxos e verificações em [autenticação e contexto](docs/16-autenticacao-contexto.md).
+Convites usam SMTP/Mailpit local; configuração e limites em
+[administração e convites](docs/17-administracao-convites.md).
 
 ## Decisões iniciais propostas
 

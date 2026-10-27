@@ -1,7 +1,14 @@
 # 10 — Plano incremental
 
 F0 foi validada localmente em 24/10/2026; evidências e limitações estão em
-`specs/000-bootstrap/tasks.md`. F1 e seguintes não foram iniciadas. A ordem busca
+`specs/000-bootstrap/tasks.md`. Em 25/10/2026, F1.A entregou a fundação local de
+identidade/RLS/RPCs com testes reais e F1.B entregou Auth SSR, recuperação e
+contexto na aplicação. F1.C foi validada em 27/10/2026 com administração e
+convites locais; evidências e limites em `specs/001-identidade-multitenancy/tasks.md`.
+F1 funcional validada localmente, sem implantação/piloto. F2.A entregou clientes
+e carteira em 27/10/2026, validada localmente; evidências em
+`specs/002-cadastros-precificacao/tasks.md` e comportamento em docs/18.
+F2.B–D e fases seguintes permanecem pendentes. A ordem busca
 entregar jornadas completas com isolamento antes do financeiro. Cada fase produz
 sua própria pasta de spec/plan/tasks usando os templates.
 
@@ -23,8 +30,8 @@ A geração dos ganhos deve entrar junto com F4 ou ser incluída como subetapa d
 - [x] F0.1 Inspecionar repositório, fixar versões compatíveis e criar projeto.
 - [x] F0.2 Configurar variáveis de exemplo, lint, tipos, build e runner de testes.
 - [x] F0.3 Criar infraestrutura local de migrations/seeds e CI sem segredos (configurada; execução hospedada pendente).
-- [ ] F1.1 Executar a especificação inicial em `specs/001-identidade-multitenancy/`.
-- [ ] F2.1 Criar spec de cadastros e testes de carteira/documento/SKU.
+- [x] F1.1 Executar a especificação inicial em `specs/001-identidade-multitenancy/` (validação local; limites de implantação registrados).
+- [ ] F2.1 Criar spec de cadastros e testes de carteira/documento/SKU (spec e carteira/documento concluídos localmente em F2.A; produtos/SKU pendentes em F2.B).
 - [ ] F2.2 Implementar versões de preços e comissão, vigência e atribuições.
 - [ ] F2.3 Validar catálogo buyer sem acesso a tabelas ou colunas internas.
 - [ ] F3.1 Implementar rascunho, cotação, envio e recuperação de falha.

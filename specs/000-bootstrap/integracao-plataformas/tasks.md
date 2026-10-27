@@ -1,17 +1,18 @@
 # Tarefas e evidências — Integração de plataformas
 
-Status: base F0 publicada e validada na Vercel pelo CLI; commits locais criados;
-push aguarda autenticação GitHub. Supabase aguarda conexão e não está integrado.
+Status: infraestrutura Vercel/Supabase validada em 25/10/2026. Base F0 publicada,
+push inicial confirmado; Supabase de desenvolvimento ativo e configurado em
+.env.local e Vercel Development/Preview. Identidade/F1 não iniciada.
 
 - [x] Ler instruções e inspecionar baseline de F0 e documentação oficial.
 - [x] Verificar identidade e identificar projeto existente na Vercel.
 - [x] Vincular diretório e verificar configurações Vercel.
-- [ ] Autenticar/identificar projeto e ambiente Supabase.
-- [ ] Configurar variáveis públicas nos ambientes confirmados.
-- [ ] Validar conexão real e registrar resultados finais.
+- [x] Autenticar/identificar projeto e ambiente Supabase.
+- [x] Configurar variáveis públicas nos ambientes confirmados.
+- [x] Validar conexão real e registrar resultados finais.
 - [x] Revisar arquivos e verificar a base antes da publicação.
 - [x] Criar os commits da base e configuração de publicação.
-- [ ] Enviar a main ao GitHub após autenticar o Git.
+- [x] Confirmar envio da main inicial ao GitHub após autenticar o Git.
 - [x] Confirmar deployment Vercel Ready e validar o endereço publicado.
 
 ## Autorização de publicação
@@ -21,6 +22,49 @@ deploy". Destino já vinculado: Vercel `pauls5/meuatacadoapp`, produção a part
 de `main`, repositório `OPauloChagas/MeuAtacadoApp`. Publicar somente a base F0;
 Supabase, autenticação, pedidos e financeiro permanecem pendentes. A autorização
 não inclui executar migrations remotas.
+
+## Continuidade Supabase — 25/10/2026
+
+O responsável confirmou o login no terminal. CLI 2.122.0 autenticado: `orgs list`
+retornou uma organização (`rorbrcxzxmlryygaoolx`); `projects list` retornou somente
+`estetisaas`, que não será alterado. Novo destino de desenvolvimento proposto:
+`meuatacado-dev` em `sa-east-1`. A criação aguarda confirmar o plano Free da
+organização. A consulta autenticada do plano pela Management API usa a credencial
+do CLI no Chaveiro do macOS, sem imprimir token. Essa consulta foi cancelada
+porque exigiu uma autorização indisponível ao responsável; nenhuma credencial
+foi lida, copiada ou exibida, e o Chaveiro não foi alterado. O CLI continua
+autenticado e funcional. Solicitada confirmação do plano diretamente no painel
+Supabase, em Organization → Billing → Subscription Plan, antes de provisionar.
+
+Development/Preview Vercel e .env.local receberão somente URL/chave pública.
+Production Vercel continuará independente desse banco de desenvolvimento.
+
+O responsável confirmou no painel que a organização está no plano **Free**.
+Nova listagem do CLI mostrou somente o projeto existente, sem `meuatacado-dev`.
+Criar o novo projeto nessa organização, em São Paulo, sem selecionar upgrade,
+instance size pago ou add-ons. Senha do banco gerada criptograficamente e guardada
+em `.env.supabase.local` ignorado e com permissão 600; não exibir a senha ou
+copiá-la para variáveis públicas/Vercel. Migrations remotas continuam excluídas.
+
+### Resultado Supabase confirmado
+
+| Critério | Comando/método | Resultado real | Limite |
+| --- | --- | --- | --- |
+| AC02 | CLI `projects create meuatacado-dev --org-id rorbrcxzxmlryygaoolx --region sa-east-1 --db-password <gerada em memória> --output json`, executado por wrapper sem imprimir credenciais | Exit 0; ref `aonjpucxfkeafoqnyrry`, ACTIVE_HEALTHY, São Paulo | Plano Free confirmado pelo responsável; nenhum tamanho pago, upgrade ou add-on solicitado |
+| AC02 | CLI `link --project-ref aonjpucxfkeafoqnyrry`, senha somente via SUPABASE_DB_PASSWORD no processo da ferramenta | Exit 0 | Nenhuma migration ou mutation de negócio solicitada |
+| AC02 | CLI `projects list --output json` após vínculo | Novo projeto ACTIVE_HEALTHY e linked=true; `estetisaas` continua ACTIVE_HEALTHY e linked=false | Nenhuma alteração solicitada no outro projeto |
+| AC03 | `projects api-keys --project-ref aonjpucxfkeafoqnyrry --output json`, sem --reveal, seleção da publishable em memória | Chave pública configurada em .env.local, permissão 600 | Resposta bruta/chaves não exibidas; nenhuma secret/service_role revelada |
+| AC03 | Vercel `env add <nome> development,preview --scope pauls5 --project meuatacadoapp --no-sensitive --yes`, valores por stdin | Exit 0 nas duas variáveis públicas, tipo Config | Nenhuma chave elevada ou senha do banco enviada à Vercel |
+| AC03 | `vercel env ls production --scope pauls5` | Exit 0, nenhuma variável | Production não usa o Supabase de desenvolvimento |
+| AC03 | Node 24 com .env.local, readPublicSupabaseConfig e GET /auth/v1/settings | Exit 0, validador aprovado, HTTP 200 e JSON | Sem identidade de usuário; não é teste de login/RLS |
+| AC03 | GET /rest/v1/ com publishable no header apikey | HTTP 401, mensagem Secret API key required | A primeira verificação supunha 200 e falhou; diagnóstico confirmou proteção do endpoint de introspecção. Resultado negativo esperado, sem mudar grants ou usar chave secreta |
+| AC03 | `vercel env pull <temporário> --environment development/preview --scope pauls5 --yes`, comparação dos valores e Node 24 usando cada arquivo baixado | Exit 0 para ambos; valores corretos, Auth 200, introspecção protegida, sem credencial elevada no ambiente | Arquivos temporários em /private/tmp com permissão 600, removidos; valores não registrados |
+| AC04 | `npm run check` com Node 24.22.1 e configuração real de desenvolvimento | Exit 0, lint, typecheck, 18 testes unitários e build | Sem testes de domínio/RLS, sem medições de desempenho; nenhum E2E novo necessário para mudança apenas de ambiente/docs |
+| AC05 | Consulta remota Git e deployments, após envio pelo VS Code | HEAD remoto e local `3ec56d6`; deployment Git `meuatacadoapp-o586qesvf-pauls5.vercel.app` READY | Confirma o push original; as atualizações documentais posteriores ficam no workspace até novo commit |
+
+Configuração e critérios AC01–AC05 atendidos para o escopo de infraestrutura.
+Nenhuma migration da aplicação foi aplicada no Supabase remoto. F1 permanece
+não implementada. Configuração operacional em `docs/14-supabase-remoto.md`.
 
 ## Verificação anterior ao primeiro push
 
@@ -69,7 +113,7 @@ não inclui executar migrations remotas.
   GitHub Actions não executou por não haver push confirmado. Nenhuma migration
   remota, convite ou operação comercial foi executada.
 
-## Evidências
+## Evidências históricas do vínculo inicial (antes do Supabase)
 
 | Verificação | Comando/método | Resultado | Limite |
 | --- | --- | --- | --- |
@@ -88,7 +132,7 @@ não inclui executar migrations remotas.
 | Repositório conectado | GET `/v9/projects/<id>` pela API autenticada Vercel, saída limitada a metadados | Exit 0; GitHub OPauloChagas/MeuAtacadoApp, branch de produção main, sem deployment de produção | Não imprimir resposta completa com configurações sensíveis |
 | Arquivos | JSON de vercel.json e whitespace dos seis arquivos criados/alterados | Aprovados | Revisão local; sem execução de build na Vercel |
 
-## Esclarecimento do responsável
+## Esclarecimento inicial do responsável (histórico)
 
 O responsável informou que criou apenas o repositório GitHub e que ainda não
 houve commit/build. A API Vercel, entretanto, confirmou a existência de
@@ -104,8 +148,11 @@ disponível. Falta concluir essa conexão para consultar organizações, verific
 possível cobrança e criar o projeto de desenvolvimento. Nenhuma chave Supabase,
 projeto de banco, migration remota ou alteração de Auth foi criada.
 
-## Informações solicitadas
+## Informações solicitadas inicialmente (resolvidas em 25/10/2026)
 
 Confirmar nome/link do projeto Supabase e ambiente. Para permitir consulta pela
 conta, conectar Supabase ou autenticar o CLI local pelo fluxo oficial. Nenhuma
 senha, access token ou chave administrativa deve ser enviada no chat.
+
+Login concluído pelo CLI, plano Free confirmado pelo responsável, projeto criado
+e conexão validada conforme a seção Resultado Supabase confirmado acima.

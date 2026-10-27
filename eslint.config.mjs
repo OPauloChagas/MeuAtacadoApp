@@ -5,6 +5,13 @@ import tseslint from "typescript-eslint";
 
 export default defineConfig([
   { ...js.configs.recommended, files: ["**/*.{ts,tsx}"] },
+  {
+    ...js.configs.recommended,
+    files: ["scripts/**/*.mjs"],
+    languageOptions: {
+      globals: { console: "readonly", process: "readonly", URL: "readonly", fetch: "readonly", AbortSignal: "readonly" },
+    },
+  },
   ...tseslint.configs.recommended,
   {
     files: ["**/*.{ts,tsx}"],

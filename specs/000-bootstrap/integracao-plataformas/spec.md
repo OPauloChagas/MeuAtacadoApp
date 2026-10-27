@@ -1,7 +1,14 @@
 # F0 — Integração com Vercel e Supabase
 
-Status: em andamento. Solicitada em 24/10/2026 após validar o bootstrap local.
+Status: infraestrutura validada em 25/10/2026. Solicitada em 24/10/2026.
 Requisito: RNF10. Complemento de infraestrutura; F1 não iniciada.
+
+Em 25/10/2026, o responsável concluiu o login Supabase no terminal e solicitou
+continuar a criação. Destino proposto: `meuatacado-dev`, São Paulo (`sa-east-1`),
+na organização existente, após confirmação do plano Free e da criação. Vincular esse banco
+somente ao desenvolvimento local e aos ambientes Vercel Development/Preview;
+o destino Production da Vercel continua publicando a página F0 independente de
+banco. Um Supabase de produção separado será definido antes de operação real.
 
 ## Objetivo e escopo
 

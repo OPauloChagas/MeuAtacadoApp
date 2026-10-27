@@ -1,7 +1,10 @@
 # 13 — Ambiente local e versões de F0
 
-Verificação em 24/10/2026. F0 prepara a infraestrutura; não implementa identidade
-nem operações comerciais. Não há projeto remoto vinculado ou publicação.
+Baseline verificada em 24/10/2026. F0 prepara a infraestrutura; não implementa
+identidade nem operações comerciais. Em 25/10/2026, a Vercel já está publicada
+e o Supabase de desenvolvimento foi vinculado; detalhes em
+[Supabase remoto](14-supabase-remoto.md). Os comandos Docker abaixo continuam
+restritos ao ambiente local.
 
 ## Versões escolhidas
 
@@ -88,17 +91,21 @@ desenvolvimento confiável e não encaminhar essas portas à Internet. O stack f
 parado após as verificações. Não alterar configurações globais do Docker nem
 tratar esta configuração de desenvolvimento como implantação de produção.
 
-Migration inicial cria apenas schema privado sem acesso de anon/authenticated.
-Seed vazio é intencional: os fixtures de tenants/atores e testes reais de RLS
-pertencem à F1. O teste pgTAP de F0 verifica somente a infraestrutura técnica;
-não prova isolamento multi-tenant nem autenticação.
+A migration inicial de F0 cria apenas schema privado sem acesso de
+anon/authenticated. A migration seguinte, F1.A, acrescenta identidade, RLS e
+operações autorizadas. Seed automático continua vazio: usuários Auth/fixtures
+são preparados pelo runner `npm run test:identity`. Veja a
+[fundação de identidade](15-identidade-fundacao.md). O teste pgTAP de F0 verifica
+somente infraestrutura técnica; a prova de isolamento usa o runner HTTP/JWT.
 
 ```sh
 npm run db:stop
 ```
 
-Para integração na F1, copie `.env.example` para `.env.local` e substitua os
-placeholders pelos valores públicos fornecidos pelo CLI local. Não copie a saída
+Para configurar outro checkout, copie `.env.example` para `.env.local` e substitua
+os placeholders pelos valores públicos do CLI local ou do projeto de
+desenvolvimento remoto. Neste workspace, .env.local já aponta para o remoto de
+desenvolvimento. Não copie a saída
 completa do CLI para logs ou documentos: pode conter chaves elevadas. Nenhuma
 chave elevada é necessária em F0. O validador público aceita publishable e anon
 legada, rejeita secret/service_role; ler o papel do JWT é apenas uma proteção de
@@ -106,13 +113,19 @@ configuração, sem verificar assinatura ou conceder acesso.
 
 ## CI e próximos ambientes
 
+F1.B acrescenta os SDKs e a execução local isolada descritos em
+[autenticação e contexto](16-autenticacao-contexto.md). Use `npm run dev:local`
+para revisar os fluxos com Docker sem modificar .env.local remoto. O job de
+banco do CI também constrói o app e executa `npm run test:auth` com Chromium.
+
 Workflow `.github/workflows/ci.yml` usa Node fixado, npm ci, verificação web,
 Chromium e banco Docker efêmero. Não lê secrets nem publica. Execução hospedada
 depende de o repositório ser enviado a um serviço com GitHub Actions habilitado;
 validar os comandos localmente não comprova que o workflow já executou remotamente.
 
-Para staging/produção, ainda será necessário criar projetos separados Supabase e
-Vercel, definir região/URLs de callback e provedor de e-mail. A Vercel suporta
+Development/Preview Vercel já usa o projeto Supabase `meuatacado-dev` em São Paulo.
+Antes da operação real, será necessário criar o Supabase de produção separado e
+definir URLs de callback e provedor de e-mail. A Vercel suporta
 [Node 24.x](https://vercel.com/docs/functions/runtimes/node-js/node-js-versions),
 mas controla o patch do runtime hospedado. Credenciais administrativas, Auth SSR,
 convites e provisionamento restrito serão definidos pela F1. Publicação e migrations

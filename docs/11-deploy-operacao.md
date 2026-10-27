@@ -4,9 +4,9 @@ Este é um roteiro de implantação futura. Em 24/10/2026, o diretório foi vinc
 ao projeto Vercel existente `pauls5/meuatacadoapp`, configurado para Next.js e
 Node 24.x. A base F0 foi publicada via CLI e validada em
 https://meuatacadoapp.vercel.app, estado READY e smoke HTTP 200 aprovado.
-Os commits locais estão prontos; o push aguarda autenticação GitHub no Git.
-A conexão Supabase aguarda
-autenticação. Evidências em
+O primeiro push foi confirmado em `3ec56d6`, com novo deployment automático READY.
+Em 25/10/2026, o projeto Supabase de desenvolvimento foi criado, vinculado e
+verificado. Configuração em [Supabase remoto](14-supabase-remoto.md). Evidências em
 [integração de plataformas](../specs/000-bootstrap/integracao-plataformas/tasks.md).
 A infraestrutura local de F0 está em [ambiente local](13-ambiente-local.md).
 
@@ -16,15 +16,17 @@ A infraestrutura local de F0 está em [ambiente local](13-ambiente-local.md).
   build `npm run build`, desenvolvimento `npm run dev`.
 - `.vercel/project.json` e `.env.local` são locais e ignorados. O CLI gerou um
   token OIDC ao vincular; seu valor não deve aparecer em documentação ou logs.
-- Nenhuma variável Supabase está configurada na Vercel. O acesso à conta Supabase
-  será conectado pelo usuário; usar primeiro desenvolvimento/homologação.
+- URL e chave publishable do `meuatacado-dev` estão configuradas em Vercel
+  Development/Preview e .env.local. Production continua sem variáveis Supabase;
+  um projeto de produção separado será definido antes da operação real.
 - O pedido explícito de commit, push e deploy autoriza publicar a base F0 em
   `pauls5/meuatacadoapp`, ambiente de produção pela branch `main`. Migrations
   remotas continuam fora desta autorização. A publicação não implementa Auth
   nem as funcionalidades de negócio.
 - Deployment publicado pelo CLI: `dpl_FZ5VrASpXoXf2xtG5LMaJyhDZuXg`, a partir do
-  commit `6223286`, sem depender de push. O GitHub e o pipeline CI não devem ser
-  tratados como sincronizados até confirmar o envio da branch main.
+  commit `6223286`, sem depender de push. O envio posterior de `3ec56d6` foi
+  confirmado no GitHub e produziu deployment automático READY; execução do
+  workflow GitHub Actions não foi auditada nesta integração.
 
 ## Ambientes
 
