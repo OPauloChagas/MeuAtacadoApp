@@ -1,5 +1,8 @@
 # Publicação F2.B + F2.C
 
+Status: implementações publicadas e verificadas em 27/10/2026; registro
+documental final preparado após CI/HTTPS aprovados.
+
 Autorizada pelo pedido de commit e publicação em 27/10/2026. Inclui produtos,
 SKU/fotos privadas e versões/atribuições comerciais já validadas localmente.
 Não inicia F2.D nem provisiona primeiro tenant/admin.

@@ -5,7 +5,7 @@ F0 foi validada localmente em 24/10/2026; evidências e limitações estão em
 identidade/RLS/RPCs com testes reais e F1.B entregou Auth SSR, recuperação e
 contexto na aplicação. F1.C foi validada em 27/10/2026 com administração e
 convites locais; evidências e limites em `specs/001-identidade-multitenancy/tasks.md`.
-F1 funcional validada localmente, sem implantação/piloto. F2.A entregou clientes
+F1 funcional publicada em desenvolvimento, sem piloto. F2.A entregou clientes
 e carteira em 27/10/2026, validada localmente; evidências em
 `specs/002-cadastros-precificacao/tasks.md` e comportamento em docs/18.
 F2.B entregou produtos, SKU e fotos privadas com validação local; evidências em
@@ -15,6 +15,10 @@ validadas localmente; evidências em `specs/002-cadastros-precificacao/comercial
 e comportamento em docs/20. F2.D e fases seguintes permanecem pendentes. A ordem busca
 entregar jornadas completas com isolamento antes do financeiro. Cada fase produz
 sua própria pasta de spec/plan/tasks usando os templates.
+
+F2.B/C publicados em desenvolvimento por autorização de 27/10/2026, junto às duas
+migrations incrementais; evidências em publicacao-f2bc/tasks.md da spec 002.
+Primeiro tenant/admin e SMTP continuam pendentes, sem dados reais/piloto.
 
 | Fase | Escopo | Requisitos | Saída verificável |
 | --- | --- | --- | --- |
@@ -35,8 +39,8 @@ A geração dos ganhos deve entrar junto com F4 ou ser incluída como subetapa d
 - [x] F0.2 Configurar variáveis de exemplo, lint, tipos, build e runner de testes.
 - [x] F0.3 Criar infraestrutura local de migrations/seeds e CI sem segredos (configurada; execução hospedada pendente).
 - [x] F1.1 Executar a especificação inicial em `specs/001-identidade-multitenancy/` (validação local; limites de implantação registrados).
-- [x] F2.1 Criar spec de cadastros e testes de carteira/documento/SKU (F2.A e F2.B validadas localmente; produtos/fotos ainda sem implantação).
-- [x] F2.2 Implementar versões de preços e comissão, vigência e atribuições (F2.C validada localmente, sem implantação).
+- [x] F2.1 Criar spec de cadastros e testes de carteira/documento/SKU (F2.A/B validadas e publicadas em desenvolvimento).
+- [x] F2.2 Implementar versões de preços e comissão, vigência e atribuições (F2.C validada e publicada em desenvolvimento).
 - [ ] F2.3 Validar catálogo buyer sem acesso a tabelas ou colunas internas.
 - [ ] F3.1 Implementar rascunho, cotação, envio e recuperação de falha.
 - [ ] F3.2 Implementar confirmação, parcelas, snapshots e estados.

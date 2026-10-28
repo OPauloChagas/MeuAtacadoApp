@@ -14,6 +14,13 @@ indisponíveis. Evidências em
 [publicação](../specs/002-cadastros-precificacao/publicacao/tasks.md).
 As seções abaixo preservam a configuração/verificação histórica da F0.
 
+Atualização F2.B/C em 27/10/2026: migrations 20261027010000 e 20261027020000
+aplicadas por autorização explícita, sem seed/reset. Seis migrations, 17 tabelas
+FORCE RLS, 40 RPCs do executor dedicado, bucket product-photos privado/3 MB/WebP
+e btree_gist em extensions conferidos. Nenhum SELECT/DML comercial direto
+liberado; zero usuários Auth/tenants. Auth/variáveis/plano preservados.
+[Evidências F2.B/C](../specs/002-cadastros-precificacao/publicacao-f2bc/tasks.md).
+
 ## Projeto
 
 | Campo | Valor |

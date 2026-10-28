@@ -1,6 +1,6 @@
 # 002 — Tarefas e evidências
 
-Status: F2.A publicada e F2.B/C validadas localmente em 27/10/2026. F2.D pendente.
+Status: F2.A–C publicadas em desenvolvimento em 27/10/2026. F2.D pendente.
 
 - [x] 002.1 Inspecionar instruções e definir o recorte/aceite de F2.A.
 - [x] 002.2 Evoluir customers/grants/RLS e contratos RPC.
@@ -13,6 +13,12 @@ Status: F2.A publicada e F2.B/C validadas localmente em 27/10/2026. F2.D pendent
 - [ ] 002.9 F2.D — catálogo/cotação buyer e prova de projeções comerciais.
 
 ## Entrega e preservação
+
+Publicação posterior autorizada: implementações F2.B/C no commit 4a40e9f,
+migrations remotas aplicadas sem seed/reset e deployment Ready conferido.
+CI e smoke HTTPS aprovados; evidências em publicacao-f2bc/tasks.md. Não houve
+provisionamento inicial. Registros abaixo preservam os limites das entregas
+locais, anteriores à autorização de publicação.
 
 Atualização F2.C: branch feat/002-commercial-versions preserva todas as alterações
 F2.B. Migration 20261027020000, oito tabelas/14 RPCs novas, UI/admin e testes

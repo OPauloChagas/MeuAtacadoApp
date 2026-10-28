@@ -1,8 +1,10 @@
 # 20 — Versões e atribuições comerciais (F2.C)
 
-Incremento local de 27/10/2026, preservando F2.B não commitada. Spec/plano/aceite
-em specs/002-cadastros-precificacao/comercial/. Sem publicação/configuração remota
-ou primeiro tenant/admin nesta etapa. Próxima entrega é catálogo/cotação F2.D.
+Incremento validado localmente em 27/10/2026, preservando a F2.B. Publicação
+posteriormente autorizada no mesmo dia; evidências em
+specs/002-cadastros-precificacao/publicacao-f2bc/tasks.md. Spec/plano/aceite em
+specs/002-cadastros-precificacao/comercial/. Primeiro tenant/admin e SMTP não
+configurados; próxima entrega é catálogo/cotação F2.D.
 
 ## Comportamento
 
@@ -119,9 +121,10 @@ persistentes com senhas. Evidências reais nas tarefas; não contar mocks como
 aprovação de permissão ou transação. Após testes, encerrar com npm run db:stop.
 
 Não foram aprovados catálogo/cotação buyer, pedidos, snapshots de venda,
-geração de parcelas, comissões ganhas/pagas, CI/HTTPS hospedados deste incremento,
-auditoria WCAG completa, volumes reais ou outro browser. Publicação permanece
-separada e configurações iniciais continuam adiadas conforme o responsável.
+geração de parcelas, comissões ganhas/pagas, auditoria WCAG completa, volumes reais
+ou outro browser. A publicação posterior verificou CI e smoke HTTPS anônimo;
+não há aprovação autenticada hospedada sem atores provisionados. Configurações
+iniciais continuam adiadas conforme o responsável.
 
 Fontes oficiais: [numeric PostgreSQL](https://www.postgresql.org/docs/17/datatype-numeric.html),
 [ranges/exclusion](https://www.postgresql.org/docs/17/rangetypes.html) e

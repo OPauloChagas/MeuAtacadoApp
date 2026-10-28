@@ -1,7 +1,8 @@
 # 002 — Cadastros e precificação
 
-Status: F2.A validada e publicada; F2.B/C validadas localmente em 27/10/2026.
-F2.D pendente. Base publicada 4403916; este incremento não publica automaticamente.
+Status: F2.A–C validadas e publicadas em desenvolvimento em 27/10/2026.
+F2.D pendente. F2.B/C publicadas por autorização explícita no commit 4a40e9f;
+evidências em publicacao-f2bc/tasks.md. Base anterior 4403916 preservada no histórico.
 Requisitos da fase: RF05–08, RN01–03/05–13/29–30, RS01–08 aplicáveis e UX01–05.
 
 ## Objetivo e sequência

@@ -29,7 +29,18 @@ Após SMTP/template e teste real, habilitar AUTH_RECOVERY_ENABLED=true.
 Primeiro tenant/admin será provisionado pelo procedimento restrito de docs/15;
 não se criaram conta, senha ou dados empresariais fictícios no remoto.
 
+## Publicação autorizada F2.B/C — 27/10/2026
+
+Commit 4a40e9f enviado à main; migrations 20261027010000/20261027020000
+aplicadas após dry-run no mesmo destino de desenvolvimento, sem seed/reset/Vault.
+Agora são seis migrations, 17 tabelas FORCE RLS e 40 RPCs do executor, bucket
+product-photos privado (3 MB, WebP). Zero usuários Auth/tenants; nenhuma mudança
+de Auth/env/plano. Deployment Ready e smoke HTTPS aprovados. Evidências em
+[publicação F2.B/C](../specs/002-cadastros-precificacao/publicacao-f2bc/tasks.md).
+
 ## Estado histórico da integração F0
+
+As descrições abaixo da F0 são históricas, não o estado atual de Production.
 
 - Configuração Vercel versionada em `vercel.json`: Next.js, instalação `npm ci`,
   build `npm run build`, desenvolvimento `npm run dev`.

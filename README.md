@@ -5,7 +5,7 @@ Nome de trabalho: Atacado. Marca final ainda não definida.
 
 ## O que é este pacote
 
-SDD significa aqui **Spec-Driven Development: desenvolvimento guiado por especificações**. O pacote também inclui o desenho da solução. A versão inicial continha somente documentos para usar com Codex e Claude no VS Code. F0 acrescentou a base Next.js/TypeScript; F1 e F2.A entregam identidade, administração, convites locais e clientes/carteira. F2.B acrescenta produtos, SKU e fotos privadas; F2.C acrescenta versões e atribuições comerciais. Ambos têm validação local. Catálogo/cotação buyer, pedidos e financeiro continuam pendentes.
+SDD significa aqui **Spec-Driven Development: desenvolvimento guiado por especificações**. O pacote também inclui o desenho da solução. A versão inicial continha somente documentos para usar com Codex e Claude no VS Code. F0 acrescentou a base Next.js/TypeScript; F1 e F2.A entregam identidade, administração, convites locais e clientes/carteira. F2.B acrescenta produtos, SKU e fotos privadas; F2.C acrescenta versões e atribuições comerciais. F1/F2.A–C estão publicados em desenvolvimento. Catálogo/cotação buyer, pedidos e financeiro continuam pendentes.
 
 A especificação é a referência do comportamento. Cada entrega segue: especificar → planejar → dividir em tarefas → implementar → validar → atualizar os documentos. Não gerar todo o sistema em uma única execução.
 
@@ -21,7 +21,7 @@ Cada fornecedor é um tenant. Administrador e vendedor são funções internas d
 2. Leia [premissas e decisões](docs/00-escopo-premissas.md). As escolhas de negócio adicionais são propostas explícitas, não requisitos que você já aprovou.
 3. Abra o projeto no VS Code. Codex deve consultar [AGENTS.md](AGENTS.md); Claude deve consultar [CLAUDE.md](CLAUDE.md).
 4. Cole o [prompt inicial](prompts/01-iniciar.md) na ferramenta escolhida.
-5. Consulte o bootstrap em `specs/000-bootstrap/` e o [guia local](docs/13-ambiente-local.md). F1 e [clientes/carteira F2.A](docs/18-clientes-carteira.md) estão publicados em desenvolvimento. [Produtos e fotos F2.B](docs/19-produtos-fotos.md) e [versões comerciais F2.C](docs/20-versoes-comerciais.md) têm specs e evidências locais em `002-cadastros-precificacao/`. Revise-as antes de iniciar catálogo/cotação buyer (F2.D).
+5. Consulte o bootstrap em `specs/000-bootstrap/` e o [guia local](docs/13-ambiente-local.md). F1, [clientes/carteira F2.A](docs/18-clientes-carteira.md), [produtos e fotos F2.B](docs/19-produtos-fotos.md) e [versões comerciais F2.C](docs/20-versoes-comerciais.md) estão publicados em desenvolvimento. Specs e evidências em `002-cadastros-precificacao/`; revise-as antes de iniciar catálogo/cotação buyer (F2.D).
 6. Use uma branch por funcionalidade. Se Codex e Claude trabalharem ao mesmo tempo, use branches/worktrees diferentes e integre por revisão; não editem os mesmos arquivos simultaneamente.
 
 As ferramentas podem variar no carregamento automático dos arquivos; o prompt manda lê-los explicitamente.
@@ -55,17 +55,18 @@ As ferramentas podem variar no carregamento automático dos arquivos; o prompt m
 ## Executar a base local
 
 Versão de desenvolvimento publicada: [meuatacadoapp.vercel.app](https://meuatacadoapp.vercel.app).
-F1/F2.A estão na Vercel e as quatro migrations foram aplicadas no
+F1/F2.A–C estão na Vercel e as seis migrations foram aplicadas no
 `meuatacado-dev`, sem seed ou usuários fictícios. O primeiro tenant/admin precisa
 de provisionamento restrito; não há senha padrão. Convites e recuperação no
 remoto aguardam SMTP/template compatível; a interface informa indisponibilidade.
 Recuperação e convites seguem testáveis no Docker/Mailpit local. Consulte a
 [configuração remota](docs/14-supabase-remoto.md) e as
-[evidências de publicação](specs/002-cadastros-precificacao/publicacao/tasks.md).
+[evidências de publicação F1/F2.A](specs/002-cadastros-precificacao/publicacao/tasks.md)
+e [publicação F2.B/C](specs/002-cadastros-precificacao/publicacao-f2bc/tasks.md).
 
-F2.B/C estão somente no workspace local: produtos/SKU, fotos privadas e versões
-comerciais. Não alteram o site nem o Supabase remoto automaticamente. Guias e
-comandos em docs/19 e docs/20. Configurações iniciais permanecem adiadas.
+F2.B/C foram publicados por autorização explícita em 27/10/2026. Guias e comandos
+locais em docs/19 e docs/20. Primeiro tenant/admin e SMTP continuam pendentes;
+configurações iniciais permanecem adiadas. Não há conta ou senha padrão.
 
 Use Node.js 24.22.1 LTS e npm 11.11.1 (Node fixado em `.nvmrc` e `.node-version`).
 

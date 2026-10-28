@@ -1,9 +1,10 @@
 # 19 — Produtos, SKU e fotos privadas (F2.B)
 
-Incremento local de 27/10/2026, sobre a versão publicada 4403916. Spec/aceite e
-evidências em specs/002-cadastros-precificacao/produtos/. Não provisiona o primeiro
-tenant/admin remoto e não publica automaticamente. Configurações iniciais ficam
-para depois do desenvolvimento, conforme o pedido atual.
+Incremento validado localmente em 27/10/2026, sobre 4403916. Spec/aceite e
+evidências em specs/002-cadastros-precificacao/produtos/. Publicação posteriormente
+autorizada junto com F2.C no mesmo dia; evidências em publicacao-f2bc/tasks.md da
+mesma spec. Primeiro tenant/admin remoto e configurações iniciais continuam
+pendentes para depois do desenvolvimento, conforme o pedido atual.
 
 ## Comportamento
 
