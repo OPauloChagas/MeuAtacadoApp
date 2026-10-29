@@ -280,6 +280,26 @@ revisão existente. Administração é por vínculo selecionado; seller/buyer
 aguardam projeções F2.D, sem acesso cru a preços/percentuais. Valores, datas,
 estado, tenant, ator e referência são validados no RPC além do servidor web.
 
+## ADR-018 — Catálogo projetado e simulação sem persistência
+
+Status: implementado localmente, F2.D, 28–29/10/2026. Acesso deriva do vínculo
+selecionado e cliente ativo próprio/carteira/tenant. Executor mantém RLS; reader
+restrito existente recebe somente colunas necessárias aos helpers booleanos
+selados. Nenhum grant cru a authenticated ou acesso adicional a comissão.
+
+Tabela ativa atribuída e versão publicada vigente resolvem preço; sem fallback.
+Simulação STABLE usa um snapshot SQL e numeric exato, até 200 linhas consolidadas,
+quantidade agregada até 1000000 e total limitado a numeric(18,2). Fingerprint
+SHA256 detecta mudança e é vinculado ao ator/contexto/condições, sem substituir
+autorização nem representar aceite assinado; F3 revalidará na submissão.
+
+Seleção só em memória da página, descartada ao navegar/paginar/trocar contexto,
+com aviso. Nenhum pedido, carrinho persistente ou escrita de cotação nesta fase.
+Fotos por proxy com sessão e JWT comum, sem URLs assinadas/cache compartilhado;
+RPC de referência expõe somente IDs opacos, sem caminho Storage.
+Header do vínculo que originou a seleção deve coincidir com a sessão revalidada
+no POST para impedir uso de seleção de aba obsoleta; não substitui autorização.
+
 ## Referências técnicas oficiais
 
 Consultadas em 24/10/2026. Reconsultar ao implementar para APIs, versões e limites atuais. Estes links embasam mecanismos da plataforma; as regras comerciais deste pacote são propostas específicas do projeto.

@@ -20,6 +20,7 @@ export default async function CustomerPage({ params, searchParams }: { params: P
   const sellers = context.role === "admin" ? (await findCustomerSellers({ search: "", status: "active", page: 0, pageSize: 20 })).data : undefined;
   return <AccessShell context={context}><p className="eyebrow">{context.role === "admin" ? "Cadastros" : "Minha carteira"}</p><h1>{result.data.name}</h1>
     <Link prefetch={false} href="/empresa/clientes">Voltar para a lista</Link>
+    <a href={`/empresa/clientes/${result.data.id}/catalogo`}>Consultar catálogo do cliente</a>
     {context.role === "admin" && <Link prefetch={false} href={`/empresa/clientes/${result.data.id}/condicoes`}>Condições comerciais</Link>}
     {(await searchParams).salvo === "1" && <p className="notice" role="status">Cliente salvo com sucesso.</p>}
     <section><h2>Cadastro do cliente</h2><CustomerDetails customer={result.data} /></section>

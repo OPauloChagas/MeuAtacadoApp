@@ -1,9 +1,10 @@
 # 002 — Plano técnico
 
-F2.A abaixo é histórico concluído. F2.B consta em produtos/plan.md e F2.C em
-comercial/plan.md. Branch atual feat/002-commercial-versions preserva F2.B não
-commitada e base publicada 4403916. Configuração inicial remota adiada conforme
-o pedido atual. F2.D permanece pendente; não iniciar automaticamente.
+F2.A abaixo é histórico concluído. F2.B consta em produtos/plan.md, F2.C em
+comercial/plan.md e F2.D em catalogo/plan.md. Branch atual feat/002-catalog-quotes
+preserva a base publicada cf4d60e; catálogo e simulação foram implementados e
+validados localmente em 28–29/10/2026. Configuração inicial remota adiada conforme
+o pedido atual. Sem publicação desta entrega ou início automático de F3.
 
 1. Inspecionar/preservar F0/F1 e revalidar versões/fontes oficiais. Branch criada:
    feat/002-customers-portfolio, mantendo todas as alterações anteriores não

@@ -2,7 +2,7 @@ import { defineConfig } from "@playwright/test";
 
 export default defineConfig({
   testDir: "./tests/e2e",
-  testIgnore: ["**/auth/**","**/admin/**","**/customers/**","**/products/**","**/commercial/**"],
+  testIgnore: ["**/auth/**","**/admin/**","**/customers/**","**/products/**","**/commercial/**","**/catalog/**"],
   forbidOnly: Boolean(process.env.CI),
   retries: 0,
   workers: 2,

@@ -1,6 +1,7 @@
 # 002 — Tarefas e evidências
 
-Status: F2.A–C publicadas em desenvolvimento em 27/10/2026. F2.D pendente.
+Status: F2.A–C publicadas em desenvolvimento em 27/10/2026. F2.D implementada e
+validada localmente em 28–29/10/2026, sem publicação; evidências em catalogo/tasks.md.
 
 - [x] 002.1 Inspecionar instruções e definir o recorte/aceite de F2.A.
 - [x] 002.2 Evoluir customers/grants/RLS e contratos RPC.
@@ -10,9 +11,17 @@ Status: F2.A–C publicadas em desenvolvimento em 27/10/2026. F2.D pendente.
 - [x] 002.6 Registrar evidências e limites, encerrar serviços locais.
 - [x] 002.7 F2.B — produtos/SKU/arquivos (validação local; evidências em produtos/tasks.md).
 - [x] 002.8 F2.C — versões e atribuições de preço/comissão/pagamento (evidências em comercial/tasks.md).
-- [ ] 002.9 F2.D — catálogo/cotação buyer e prova de projeções comerciais.
+- [x] 002.9 F2.D — catálogo/cotação buyer e prova de projeções comerciais (local).
 
 ## Entrega e preservação
+
+F2.D: migration 20261028000000, três RPCs de catálogo/foto/cotação, API e UI por
+cliente/vínculo e runner real local. Sem novas tabelas/dependências ou abertura
+de SELECT/DML comercial para authenticated. Simulação exata, fingerprint de
+mudança e seleção somente em memória; sem pedidos. Detalhes em catalogo/ e
+docs/21. Branch feat/002-catalog-quotes preserva cf4d60e. Sem commit/push/deploy
+deste incremento. Próxima fase de implementação é F3, sem início automático.
+As atualizações F2.A–C abaixo preservam o histórico das respectivas rodadas.
 
 Publicação posterior autorizada: implementações F2.B/C no commit 4a40e9f,
 migrations remotas aplicadas sem seed/reset e deployment Ready conferido.
@@ -24,7 +33,7 @@ Atualização F2.C: branch feat/002-commercial-versions preserva todas as altera
 F2.B. Migration 20261027020000, oito tabelas/14 RPCs novas, UI/admin e testes
 reais. Total 17 tabelas de negócio FORCE RLS/40 RPCs. Spec/plano/evidências em
 comercial/, guia docs/20. Sem nova dependência, commit ou implantação automática.
-Próxima etapa F2.D, catálogo/cotação buyer; não iniciada. Seções abaixo são o
+Na conclusão de F2.C, F2.D ainda não havia sido iniciada. Seções abaixo são o
 histórico de F2.B e F2.A, com contagens/limites das respectivas rodadas.
 
 Atualização: F2.B autorizada pelo pedido de continuidade e validada na branch

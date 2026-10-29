@@ -1,7 +1,8 @@
 # 002 — Cadastros e precificação
 
 Status: F2.A–C validadas e publicadas em desenvolvimento em 27/10/2026.
-F2.D pendente. F2.B/C publicadas por autorização explícita no commit 4a40e9f;
+F2.D implementada e validada localmente em 28–29/10/2026, sem publicação.
+F2.B/C publicadas por autorização explícita no commit 4a40e9f;
 evidências em publicacao-f2bc/tasks.md. Base anterior 4403916 preservada no histórico.
 Requisitos da fase: RF05–08, RN01–03/05–13/29–30, RS01–08 aplicáveis e UX01–05.
 
@@ -17,8 +18,10 @@ próprios. RF06 inclui SKU/cadastro e foto privada; preço continua em F2.C/D.
 
 F2.C está em [comercial/spec.md](comercial/spec.md), com plano e evidências:
 versões imutáveis de preço/comissão, vigência e atribuições, cadastro de condição
-de pagamento e valores exatos. F2.D ainda resolverá projeções de catálogo/cotação
-buyer. Configurações iniciais permanecem adiadas; não iniciar outra etapa agora.
+de pagamento e valores exatos. F2.D está em [catalogo/spec.md](catalogo/spec.md):
+projeções de catálogo/foto e simulação exata por cliente, com revisão de mudança
+de preço e seleção somente em memória da página. Configurações iniciais
+permanecem adiadas; não iniciar F3 automaticamente.
 
 ## Recorte F2.A — clientes e carteira
 

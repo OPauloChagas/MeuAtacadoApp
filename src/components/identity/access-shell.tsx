@@ -16,6 +16,7 @@ export function AccessShell({ context, children }: { context: AccessContext; chi
         {context.role !== "buyer" && <Link prefetch={false} href="/empresa/produtos">Produtos</Link>}
         {context.role === "admin" && <><Link prefetch={false} href="/empresa/tabelas-preco">Tabelas de preço</Link><Link prefetch={false} href="/empresa/comissoes">Comissões</Link><Link prefetch={false} href="/empresa/condicoes-pagamento">Condições de pagamento</Link></>}
         {context.role === "buyer" && <Link prefetch={false} href="/cliente/minha-conta">Minha conta</Link>}
+        {context.role === "buyer" && <a href="/cliente/catalogo">Catálogo</a>}
         {context.role === "admin" && <a href="/empresa/configuracoes">Minha empresa</a>}
         {context.role === "admin" && <a href="/empresa/usuarios">Usuários e convites</a>}
         <a href="/selecionar-acesso">Trocar acesso</a>

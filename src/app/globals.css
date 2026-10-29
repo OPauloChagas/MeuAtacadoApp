@@ -94,3 +94,8 @@ dd { margin: 0; font-weight: 600; overflow-wrap: anywhere; }
 .data-grid dd { margin: .25rem 0; overflow-wrap: anywhere; }
 .product-editor-fields { display: grid; gap: 1rem; border: 0; padding: 0; margin: 0; min-width: 0; }
 .sr-only { position: absolute; width: 1px; height: 1px; padding: 0; margin: -1px; overflow: hidden; clip-path: inset(50%); white-space: nowrap; border: 0; }
+.catalog-grid { list-style: none; padding: 0; margin: 1.5rem 0; display: grid; gap: 1rem; grid-template-columns: repeat(auto-fit,minmax(min(100%,16rem),1fr)); }
+.catalog-card { min-width: 0; border: 1px solid #cedbd2; border-radius: .75rem; padding: 1rem; }
+.catalog-card h3 { margin: .5rem 0; }
+.catalog-card p { margin: .4rem 0 .75rem; }
+.catalog-price { font-size: 1.2rem; font-weight: 700; }

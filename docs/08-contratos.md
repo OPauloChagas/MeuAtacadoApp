@@ -166,9 +166,29 @@ Publicação sela itens/datas e recusa interseção. Revisão e chave de idempot
 são obrigatórias nas mutações aplicáveis. Contratos concretos na migration
 20261027020000 e catálogo completo em docs/20.
 
+## Catálogo e simulação em F2.D
+
+Entrega local: GET /api/catalog com q/category/page/pageSize/customerId; GET
+/api/catalog/{id}/photo e POST /api/catalog com items [{product_id,quantity}],
+customerId/expectedToken opcionais. Origin válido e X-Atacado-Context igual ao
+vínculo revalidado são obrigatórios no POST. Header não substitui autorização;
+protege seleção de aba cujo contexto foi trocado. Corpo JSON limitado a 65536
+bytes, sem campos adicionais. Dinheiro só no retorno, em strings decimais.
+
+Lista devolve customer, availability, items, total/page/pageSize. Cotação devolve
+status current/price_changed, token, generatedAt, items (productId/sku/name/
+salesUnit/packageContent/quantity/unitPrice/lineTotal) e total. HTTP409 com
+PRICE_CHANGED inclui nova cotação para revisar; indisponibilidade/quantidade/
+AMOUNT_LIMIT retornam 422, falta de sessão 401 e acesso negado 403. Foto usa
+WebP privado/no-store/nosniff; referência RPC contém somente IDs opacos.
+
+RPCs list_catalog/get_catalog_photo/quote_catalog, sem novas tabelas ou escritas;
+assinaturas/defaults na migration 20261028000000. Fingerprint não é autorização
+nem aceite assinado. Contratos e limites em docs/21 e spec catalogo/.
+
 ## Exemplo de submissão
 
-Contrato futuro da etapa de pedidos, não implementado em F2.C.
+Contrato futuro da etapa de pedidos, não implementado em F2.D.
 
 ```json
 {

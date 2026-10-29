@@ -65,6 +65,12 @@ Rotas são organização visual; o servidor autoriza cada operação separadamen
 
 ## Jornadas principais
 
+Entrega local F2.D: `/cliente/catalogo` e `/empresa/clientes/{id}/catalogo`
+permitem consulta/simulação transitória por cliente. Sem carrinho persistente
+ou envio nesta etapa. Busca, paginação e navegação descartam a seleção, com
+aviso explícito; preço alterado pede revisão. Jornadas de pedido abaixo são
+futuras; não estão habilitadas por esta entrega. Detalhes em docs/21.
+
 **Pedido do comprador:** login → contexto → catálogo com preço aplicável → quantidade → carrinho → revisar → enviar → confirmação com número e estado “Aguardando confirmação”. Se preço mudou, mostrar diferenças e exigir nova revisão.
 
 **Atendimento do fornecedor:** abrir enviados → detalhe → revisar itens e condição → confirmar → visualizar parcelas → separar → entregar. Mostrar situação financeira em bloco separado do estado de entrega.

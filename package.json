@@ -29,7 +29,8 @@
     "db:lint": "supabase db lint --local --schema public,private --level warning --fail-on warning --network-id meuatacado-local",
     "db:test": "supabase test db --network-id meuatacado-local",
     "test:products": "node scripts/test-products.mjs",
-    "test:commercial": "node scripts/test-commercial.mjs"
+    "test:commercial": "node scripts/test-commercial.mjs",
+    "test:catalog": "node scripts/test-catalog.mjs"
   },
   "dependencies": {
     "@supabase/ssr": "0.12.7",

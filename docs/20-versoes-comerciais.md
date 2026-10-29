@@ -4,7 +4,9 @@ Incremento validado localmente em 27/10/2026, preservando a F2.B. Publicação
 posteriormente autorizada no mesmo dia; evidências em
 specs/002-cadastros-precificacao/publicacao-f2bc/tasks.md. Spec/plano/aceite em
 specs/002-cadastros-precificacao/comercial/. Primeiro tenant/admin e SMTP não
-configurados; próxima entrega é catálogo/cotação F2.D.
+configurados. Catálogo/cotação F2.D foi implementado e validado localmente em
+28–29/10/2026, sem publicação; detalhes e limites em docs/21. O restante deste
+guia descreve o recorte F2.C preservado.
 
 ## Comportamento
 

@@ -57,11 +57,19 @@ e docs/19; não estender essa aprovação a arquivos/recibos de fases futuras.
 
 ## Prova mínima de isolamento
 
+F2.D local acrescenta três RPCs de catálogo/cotação/foto (43 públicas no total),
+com snapshot STABLE e DTOs explícitos por cliente/vínculo. Reader selado recebe
+somente colunas necessárias aos helpers booleanos; authenticated continua sem
+acesso cru comercial. Foto buyer exige preço vigente visível e JWT atual,
+inclusive no Storage. Assinatura/listagem/escrita permanecem bloqueadas. Header
+de vínculo só detecta contexto obsoleto e não concede autorização. Provas reais
+e limites em catalogo/tasks.md e docs/21; sem publicação desta migration.
+
 F2.C nega SELECT/DML direto nas oito tabelas comerciais até ao JWT admin.
 Somente RPCs autorizadas pelo vínculo admin selecionado projetam esses dados;
 campos comerciais de customers não entram nos grants/DTOs anteriores. Datas e
 decimais são validados também no banco; replay reautoriza e falha de auditoria
-desfaz toda a operação. Projeções buyer/seller serão próprias de F2.D, sem abrir
+desfaz toda a operação. Projeções buyer/seller são próprias de F2.D, sem abrir
 acesso cru a versões ou percentuais. Provas reais locais em comercial/tasks.md.
 
 Dois tenants A/B; admin e seller em cada; dois clientes em A; buyer em cada cliente e um usuário com vínculos em A/B. Testar IDOR via URL, corpo, query, RPC, exportação, Storage e acesso direto de dados. Verificar também contadores, respostas de erro e cache após troca de contexto.

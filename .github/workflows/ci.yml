@@ -59,6 +59,8 @@ jobs:
       - run: npm run test:products
       - run: npm run db:reset
       - run: npm run test:commercial
+      - run: npm run db:reset
+      - run: npm run test:catalog
       - name: Stop local Supabase
         if: always()
         run: npm run db:stop

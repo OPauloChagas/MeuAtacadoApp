@@ -5,7 +5,7 @@ Nome de trabalho: Atacado. Marca final ainda não definida.
 
 ## O que é este pacote
 
-SDD significa aqui **Spec-Driven Development: desenvolvimento guiado por especificações**. O pacote também inclui o desenho da solução. A versão inicial continha somente documentos para usar com Codex e Claude no VS Code. F0 acrescentou a base Next.js/TypeScript; F1 e F2.A entregam identidade, administração, convites locais e clientes/carteira. F2.B acrescenta produtos, SKU e fotos privadas; F2.C acrescenta versões e atribuições comerciais. F1/F2.A–C estão publicados em desenvolvimento. Catálogo/cotação buyer, pedidos e financeiro continuam pendentes.
+SDD significa aqui **Spec-Driven Development: desenvolvimento guiado por especificações**. O pacote também inclui o desenho da solução. A versão inicial continha somente documentos para usar com Codex e Claude no VS Code. F0 acrescentou a base Next.js/TypeScript; F1 e F2.A entregam identidade, administração, convites locais e clientes/carteira. F2.B acrescenta produtos, SKU e fotos privadas; F2.C acrescenta versões e atribuições comerciais. F1/F2.A–C estão publicados em desenvolvimento. F2.D implementa catálogo e simulação de preços por cliente, validados localmente em 28–29/10/2026, ainda sem publicação. Pedidos e financeiro continuam pendentes.
 
 A especificação é a referência do comportamento. Cada entrega segue: especificar → planejar → dividir em tarefas → implementar → validar → atualizar os documentos. Não gerar todo o sistema em uma única execução.
 
@@ -21,7 +21,7 @@ Cada fornecedor é um tenant. Administrador e vendedor são funções internas d
 2. Leia [premissas e decisões](docs/00-escopo-premissas.md). As escolhas de negócio adicionais são propostas explícitas, não requisitos que você já aprovou.
 3. Abra o projeto no VS Code. Codex deve consultar [AGENTS.md](AGENTS.md); Claude deve consultar [CLAUDE.md](CLAUDE.md).
 4. Cole o [prompt inicial](prompts/01-iniciar.md) na ferramenta escolhida.
-5. Consulte o bootstrap em `specs/000-bootstrap/` e o [guia local](docs/13-ambiente-local.md). F1, [clientes/carteira F2.A](docs/18-clientes-carteira.md), [produtos e fotos F2.B](docs/19-produtos-fotos.md) e [versões comerciais F2.C](docs/20-versoes-comerciais.md) estão publicados em desenvolvimento. Specs e evidências em `002-cadastros-precificacao/`; revise-as antes de iniciar catálogo/cotação buyer (F2.D).
+5. Consulte o bootstrap em `specs/000-bootstrap/` e o [guia local](docs/13-ambiente-local.md). F1, [clientes/carteira F2.A](docs/18-clientes-carteira.md), [produtos e fotos F2.B](docs/19-produtos-fotos.md) e [versões comerciais F2.C](docs/20-versoes-comerciais.md) estão publicados em desenvolvimento. [Catálogo e simulação F2.D](docs/21-catalogo-cotacao.md) estão implementados localmente, sem deploy. Specs e evidências em `002-cadastros-precificacao/`; não avançar automaticamente para pedidos (F3).
 6. Use uma branch por funcionalidade. Se Codex e Claude trabalharem ao mesmo tempo, use branches/worktrees diferentes e integre por revisão; não editem os mesmos arquivos simultaneamente.
 
 As ferramentas podem variar no carregamento automático dos arquivos; o prompt manda lê-los explicitamente.
@@ -51,6 +51,7 @@ As ferramentas podem variar no carregamento automático dos arquivos; o prompt m
 | [18 — Clientes e carteira](docs/18-clientes-carteira.md) | Cadastro e carteira com projeção por contexto, F2.A |
 | [19 — Produtos e fotos](docs/19-produtos-fotos.md) | Cadastro/SKU, quantidades comerciais e Storage privado local, F2.B |
 | [20 — Versões comerciais](docs/20-versoes-comerciais.md) | Tabelas, vigência, precisão, pagamento e atribuições locais, F2.C |
+| [21 — Catálogo e simulação](docs/21-catalogo-cotacao.md) | Preço aplicável por cliente, fotos privadas e cotação transitória local, F2.D |
 
 ## Executar a base local
 
@@ -67,6 +68,11 @@ e [publicação F2.B/C](specs/002-cadastros-precificacao/publicacao-f2bc/tasks.m
 F2.B/C foram publicados por autorização explícita em 27/10/2026. Guias e comandos
 locais em docs/19 e docs/20. Primeiro tenant/admin e SMTP continuam pendentes;
 configurações iniciais permanecem adiadas. Não há conta ou senha padrão.
+
+F2.D permanece somente no workspace local: catálogo buyer e consulta por cliente
+para admin/seller, simulação exata e revisão após mudança de preço. Sem pedido
+persistido ou envio; a seleção é descartada ao navegar. Guia em docs/21 e
+evidências em specs/002-cadastros-precificacao/catalogo/tasks.md.
 
 Use Node.js 24.22.1 LTS e npm 11.11.1 (Node fixado em `.nvmrc` e `.node-version`).
 

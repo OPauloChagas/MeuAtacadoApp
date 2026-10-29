@@ -9,6 +9,6 @@ export default async function CustomerHome() {
   return <AccessShell context={context}>
     <p className="eyebrow">Espaço do comprador</p><h1>Bem-vindo ao seu portal</h1>
     <p className="intro">Você representa {context.customer_name} em {context.company_name}.</p>
-    <section><h2>Acesso confirmado</h2><p>Seu vínculo está ativo. Catálogo, pedidos e consultas serão disponibilizados nas próximas etapas.</p></section>
+    <section><h2>Produtos para seu negócio</h2><p>Consulte os preços disponíveis e simule quantidades antes de fazer seu pedido.</p><a className="secondary-link" href="/cliente/catalogo">Abrir catálogo</a><p className="hint">O envio de pedidos será disponibilizado em uma próxima etapa.</p></section>
   </AccessShell>;
 }
