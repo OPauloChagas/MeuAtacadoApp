@@ -14,7 +14,7 @@ adiadas conforme o pedido atual. F2.C entregou versões/atribuições comerciais
 validadas localmente; evidências em `specs/002-cadastros-precificacao/comercial/tasks.md`
 e comportamento em docs/20. F2.D entregou catálogo/cotação por cliente com
 validação local em 28–29/10/2026; evidências em catalogo/tasks.md da spec 002 e
-comportamento em docs/21. F3 e fases seguintes permanecem pendentes. A ordem busca
+comportamento em docs/21. F2.D publicada por autorização em 29/10/2026; evidências em publicacao-f2d/. F3 e fases seguintes permanecem pendentes. A ordem busca
 entregar jornadas completas com isolamento antes do financeiro. Cada fase produz
 sua própria pasta de spec/plan/tasks usando os templates.
 
@@ -43,7 +43,7 @@ A geração dos ganhos deve entrar junto com F4 ou ser incluída como subetapa d
 - [x] F1.1 Executar a especificação inicial em `specs/001-identidade-multitenancy/` (validação local; limites de implantação registrados).
 - [x] F2.1 Criar spec de cadastros e testes de carteira/documento/SKU (F2.A/B validadas e publicadas em desenvolvimento).
 - [x] F2.2 Implementar versões de preços e comissão, vigência e atribuições (F2.C validada e publicada em desenvolvimento).
-- [x] F2.3 Validar catálogo buyer sem acesso a tabelas ou colunas internas (local; sem publicação).
+- [x] F2.3 Validar catálogo buyer sem acesso a tabelas ou colunas internas (local e publicada em desenvolvimento).
 - [ ] F3.1 Implementar rascunho, cotação, envio e recuperação de falha.
 - [ ] F3.2 Implementar confirmação, parcelas, snapshots e estados.
 - [ ] F3.3 Provar idempotência e concorrência do pedido.

@@ -1,7 +1,7 @@
 # 002 — Cadastros e precificação
 
 Status: F2.A–C validadas e publicadas em desenvolvimento em 27/10/2026.
-F2.D implementada e validada localmente em 28–29/10/2026, sem publicação.
+F2.D implementada e validada localmente em 28–29/10/2026, publicada por pedido explícito em 29/10/2026; evidências em publicacao-f2d/tasks.md.
 F2.B/C publicadas por autorização explícita no commit 4a40e9f;
 evidências em publicacao-f2bc/tasks.md. Base anterior 4403916 preservada no histórico.
 Requisitos da fase: RF05–08, RN01–03/05–13/29–30, RS01–08 aplicáveis e UX01–05.

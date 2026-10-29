@@ -1,5 +1,10 @@
 # Tarefas e evidências F2.D
 
+Publicação posterior autorizada em 29/10/2026: commit 5bb0856, migration remota,
+CI success e deployment Ready/HTTPS conferidos. Evidências em
+../publicacao-f2d/tasks.md; registros abaixo preservam a execução local anterior
+à autorização de publicação.
+
 - [x] D.1 Ler requisitos/instruções, inspecionar/preservar e especificar.
 - [x] D.2 Migration/projeções/RLS/foto/cotação exata.
 - [x] D.3 Casos de uso, API e UI por contexto.

@@ -63,7 +63,8 @@ somente colunas necessárias aos helpers booleanos; authenticated continua sem
 acesso cru comercial. Foto buyer exige preço vigente visível e JWT atual,
 inclusive no Storage. Assinatura/listagem/escrita permanecem bloqueadas. Header
 de vínculo só detecta contexto obsoleto e não concede autorização. Provas reais
-e limites em catalogo/tasks.md e docs/21; sem publicação desta migration.
+e limites em catalogo/tasks.md e docs/21; publicação autorizada em 29/10/2026
+registrada em publicacao-f2d/tasks.md.
 
 F2.C nega SELECT/DML direto nas oito tabelas comerciais até ao JWT admin.
 Somente RPCs autorizadas pelo vínculo admin selecionado projetam esses dados;

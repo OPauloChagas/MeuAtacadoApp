@@ -1,9 +1,12 @@
 # 21 — Catálogo e simulação (F2.D)
 
 Implementado localmente em 28–29/10/2026 na branch feat/002-catalog-quotes,
-preservando cf4d60e. Especificação, plano, evidências e limites em
+preservando cf4d60e. Publicação autorizada em 29/10/2026: commit 5bb0856,
+migration remota, CI e deployment Ready/HTTPS conferidos; evidências em
+[publicação F2.D](../specs/002-cadastros-precificacao/publicacao-f2d/tasks.md).
+Especificação, plano, evidências locais e limites em
 [catálogo](../specs/002-cadastros-precificacao/catalogo/tasks.md). A versão publicada
-continua em F2.A–C; esta entrega não faz deploy nem aplica migration remota.
+inclui F2.D no ambiente de desenvolvimento existente, sem dados reais/piloto.
 
 ## Comportamento
 

@@ -4,7 +4,7 @@ F2.A abaixo é histórico concluído. F2.B consta em produtos/plan.md, F2.C em
 comercial/plan.md e F2.D em catalogo/plan.md. Branch atual feat/002-catalog-quotes
 preserva a base publicada cf4d60e; catálogo e simulação foram implementados e
 validados localmente em 28–29/10/2026. Configuração inicial remota adiada conforme
-o pedido atual. Sem publicação desta entrega ou início automático de F3.
+o pedido atual. F2.D publicada por autorização posterior em 29/10/2026; F3 exige recorte próprio.
 
 1. Inspecionar/preservar F0/F1 e revalidar versões/fontes oficiais. Branch criada:
    feat/002-customers-portfolio, mantendo todas as alterações anteriores não

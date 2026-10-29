@@ -1,6 +1,6 @@
 # Publicação F2.D
 
-Status: preparada em 29/10/2026. Pedido atual autoriza commit, publicação da
+Status: publicada e verificada em 29/10/2026. Pedido atual autoriza commit, publicação da
 F2.D e início do próximo incremento de desenvolvimento. Substitui o limite
 anterior de não publicar a entrega local; não autoriza dados/convites reais.
 

@@ -23,6 +23,12 @@ liberado; zero usuários Auth/tenants. Auth/variáveis/plano preservados.
 
 ## Projeto
 
+Atualização F2.D em 29/10/2026: migration 20261028000000 aplicada após dry-run,
+sem seeds/roles/Vault/reset. Sete migrations, 43 RPCs e as mesmas 17 tabelas
+FORCE RLS; reader sem acesso ao valor dos preços e nenhum grant comercial cru
+ao cliente. Zero tenants/Auth users, bucket privado e Auth/env/plano preservados.
+[Evidências F2.D](../specs/002-cadastros-precificacao/publicacao-f2d/tasks.md).
+
 | Campo | Valor |
 | --- | --- |
 | Nome | `meuatacado-dev` |

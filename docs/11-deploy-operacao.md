@@ -40,6 +40,12 @@ de Auth/env/plano. Deployment Ready e smoke HTTPS aprovados. Evidências em
 
 ## Estado histórico da integração F0
 
+Atualização F2.D em 29/10/2026: commit 5bb0856 e migration 20261028000000
+publicados por pedido explícito no mesmo destino de desenvolvimento. Sete
+migrations e 43 RPCs; CI success e deployment Ready/HTTPS conferidos. Sem
+seed/reset, novos atores ou mudança Auth/env/plano. Evidências em
+[publicação F2.D](../specs/002-cadastros-precificacao/publicacao-f2d/tasks.md).
+
 As descrições abaixo da F0 são históricas, não o estado atual de Production.
 
 - Configuração Vercel versionada em `vercel.json`: Next.js, instalação `npm ci`,

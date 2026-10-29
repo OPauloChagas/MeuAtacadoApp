@@ -1,7 +1,7 @@
 # 002 — Tarefas e evidências
 
 Status: F2.A–C publicadas em desenvolvimento em 27/10/2026. F2.D implementada e
-validada localmente em 28–29/10/2026, sem publicação; evidências em catalogo/tasks.md.
+validada localmente em 28–29/10/2026 e publicada por autorização em 29/10/2026; evidências em catalogo/tasks.md e publicacao-f2d/tasks.md.
 
 - [x] 002.1 Inspecionar instruções e definir o recorte/aceite de F2.A.
 - [x] 002.2 Evoluir customers/grants/RLS e contratos RPC.
@@ -19,8 +19,9 @@ F2.D: migration 20261028000000, três RPCs de catálogo/foto/cotação, API e UI
 cliente/vínculo e runner real local. Sem novas tabelas/dependências ou abertura
 de SELECT/DML comercial para authenticated. Simulação exata, fingerprint de
 mudança e seleção somente em memória; sem pedidos. Detalhes em catalogo/ e
-docs/21. Branch feat/002-catalog-quotes preserva cf4d60e. Sem commit/push/deploy
-deste incremento. Próxima fase de implementação é F3, sem início automático.
+docs/21. Branch feat/002-catalog-quotes preserva cf4d60e. Publicação autorizada
+no commit 5bb0856, migration/CI/Vercel verificadas; evidências em publicacao-f2d/.
+O pedido posterior também autoriza o próximo incremento F3.A, em branch própria.
 As atualizações F2.A–C abaixo preservam o histórico das respectivas rodadas.
 
 Publicação posterior autorizada: implementações F2.B/C no commit 4a40e9f,

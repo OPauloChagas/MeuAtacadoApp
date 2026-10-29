@@ -1,6 +1,7 @@
 # F2.D — Catálogo e cotação autorizados
 
-Status: implementada e validada localmente em 28–29/10/2026, sem publicação.
+Status: implementada e validada localmente em 28–29/10/2026; publicação posterior
+autorizada e verificada em 29/10/2026, evidências em ../publicacao-f2d/tasks.md.
 Base publicada cf4d60e preservada.
 RF06/07 e preparação de RF09, RN01–03/07–10/12–13, RS01–08, RNF01/02/05/06/08–10.
 
@@ -57,4 +58,5 @@ retornam fotografia antiga ou nova completa, sem misturar preços de versões.
 D07. Migrations do zero, check/SQL e regressões reais pertinentes com evidências.
 
 Fora: F3/persistência/envio/confirmação de pedidos, financeiro, novas dependências
-antecipadas, primeiro admin/SMTP, commit/push/deploy/migrations remotas nesta execução.
+antecipadas, primeiro admin/SMTP e publicação na execução original de implementação.
+A publicação posterior tem autorização/spec próprias, preservadas separadamente.
